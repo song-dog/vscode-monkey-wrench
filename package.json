@@ -16,7 +16,7 @@
     "Programming Languages"
   ],
   "galleryBanner": {
-    "color": "#007ACC",
+    "color": "#8a5cf5",
     "theme": "dark"
   },
   "keywords": [
@@ -56,12 +56,13 @@
       "description": "Visual Studio Marketplace Rating"
     }
   ],
+  "types": "@types/index.d.ts",
   "contributes": {
     "commands": [
       {
-        "command": "monkey-wrench.helloWorld",
-        "title": "Hello World",
-        "category": "Hello",
+        "command": "monkey-wrench.update-configs",
+        "title": "Update Configs",
+        "category": "Monkey Wrench",
         "icon": {
           "light": "images/icon-light.svg",
           "dark": "images/icon-dark.svg"
@@ -73,12 +74,12 @@
       "properties": {
         "monkey-wrench.metadata.namespace": {
           "type": "string",
-          "default": "URL",
+          "default": "https://my-userscripts.com/",
           "markdownDescription": "Used for auto filling `@namespace` in the code snippet `UserScript`."
         },
         "monkey-wrench.metadata.author": {
           "type": "string",
-          "default": "Your name",
+          "default": "You",
           "markdownDescription": "Used for auto filling `@author` in the code snippet `UserScript`."
         },
         "monkey-wrench.metadata.icon": {
@@ -86,9 +87,9 @@
           "default": "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPCFET0NUWVBFIHN2Zz4KPHN2ZyB2aWV3Qm94PSIwIDAgNTAwIDUwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8ZGVmcz4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iZGVzZXJ0LWJsdWUiIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIiB4MT0iMjUwIiB5MT0iLTAuMDAxIiB4Mj0iMjUwIiB5Mj0iNTAwLjAwMSIgc3ByZWFkTWV0aG9kPSJyZWZsZWN0Ij4KICAgICAgPHN0b3Agc3R5bGU9InN0b3AtY29sb3I6IGNvbG9yKGRpc3BsYXktcDMgMC41MyAwLjcgMC43NSk7IiBvZmZzZXQ9IjAiLz4KICAgICAgPHN0b3Agc3R5bGU9InN0b3AtY29sb3I6IGNvbG9yKGRpc3BsYXktcDMgMC42NDMwOSwgMC42OTIxNSwgMC41NjYxNCk7IiBvZmZzZXQ9IjAuMzEzIi8+CiAgICAgIDxzdG9wIHN0eWxlPSJzdG9wLWNvbG9yOiBjb2xvcihkaXNwbGF5LXAzIDAuNjEyOTksIDAuNTYzMDEsIDAuMzM0Nyk7IiBvZmZzZXQ9IjAuNTE5Ii8+CiAgICAgIDxzdG9wIHN0eWxlPSJzdG9wLWNvbG9yOiBjb2xvcihkaXNwbGF5LXAzIDAuNzYgMC41NyAwLjI2KTsiIG9mZnNldD0iMC43MTkiLz4KICAgICAgPHN0b3Agc3R5bGU9InN0b3AtY29sb3I6IGNvbG9yKGRpc3BsYXktcDMgMC41MiAwLjE1IDAuMDcpOyIgb2Zmc2V0PSIxIi8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogIDwvZGVmcz4KICA8ZWxsaXBzZSBwYWludC1vcmRlcj0iZmlsbCIgZmlsbC1ydWxlPSJldmVub2RkIiBmaWxsPSJ1cmwoJyNkZXNlcnQtYmx1ZScpIiBjeD0iMjUwIiBjeT0iMjUwIiByeD0iMjUwIiByeT0iMjUwLjAwMSIgdHJhbnNmb3JtPSJtYXRyaXgoMSwgMCwgMCwgMSwgMCwgMCkiLz4KPC9zdmc+",
           "markdownDescription": "Used for auto filling `@icon` in the code snippet `UserScript`."
         },
-        "monkey-wrench.activationCondition.fileExtensions": {
+        "monkey-wrench.activation-condition.fileExtensions": {
           "type": "array",
-          "markdownDescription": "Completion, hover, and code snippets are only enabled in files with specific extensions.\n\nSyntax highlighting always takes effect because injection grammar contributions aren't dynamic, see [#53885](https://github.com/microsoft/vscode/issues/53885).",
+          "markdownDescription": "Enable extension features only in files with specific extensions. The default is `.user.js`. An empty array will enable the extension in all files.",
           "default": [
             ".user.js"
           ],
@@ -97,25 +98,25 @@
             "pattern": "^\\..+$"
           }
         },
-        "monkey-wrench.activationCondition.userscriptHeader": {
+        "monkey-wrench.activation-condition.userscriptHeader": {
           "type": "boolean",
-          "markdownDescription": "Completion, hover, and code snippets are only enabled in files that start with `// ==UserScript==`.\n\nSyntax highlighting always takes effect because injection grammar contributions aren't dynamic, see [#53885](https://github.com/microsoft/vscode/issues/53885).",
+          "markdownDescription": "Enable extension features only in files with a userscript header.\n\n```js\n// ==UserScript==\n// @name         Script name\n// etc..\n// ==/UserScript==\n```",
           "default": false
         },
-        "monkey-wrench.enableTsConfigUpdate": {
+        "monkey-wrench.enable-ts-config-update": {
           "type": "boolean",
           "default": false,
-          "markdownDescription": "Enable automatic updates to `tsconfig.json`."
+          "markdownDescription": "Update / create `tsconfig.json` in the current workspace for userscript compatibility."
         },
-        "monkey-wrench.enableJsConfigUpdate": {
+        "monkey-wrench.enable-js-config-update": {
           "type": "boolean",
           "default": false,
-          "markdownDescription": "Enable automatic updates to `jsconfig.json`."
+          "markdownDescription": "Update / create `jsconfig.json` in the current workspace for userscript compatibility."
         },
-        "monkey-wrench.enableEslintConfigUpdate": {
+        "monkey-wrench.enable-eslint-config-update": {
           "type": "boolean",
           "default": false,
-          "markdownDescription": "Enable automatic updates to `.eslintrc.json`."
+          "markdownDescription": "Update / create `.eslintrc.json` in the current workspace for userscript compatibility."
         }
       }
     },
@@ -134,7 +135,7 @@
       {
         "injectTo": ["source.js"],
         "scopeName": "source.js.user",
-        "path": "./src/syntaxes/userscript.tmLanguage.json",
+        "path": "./syntaxes/userscript.tmLanguage.json",
         "embeddedLanguages": {"source.css": "css"}
       }
     ],
@@ -142,7 +143,7 @@
       "editor/context": [
         {
           "when": "resourceFilename =~ /\\.user\\.js$/",
-          "command": "monkey-wrench.helloWorld",
+          "command": "monkey-wrench.update-configs",
           "group": "navigation"
         }
       ]
@@ -154,10 +155,7 @@
     "test": "vscode-test",
     "vscode:prepublish": "npm run esbuild-base -- --minify",
     "esbuild-base": "esbuild ./src/extension.mjs --bundle --outfile=dist/extension.js --external:vscode --format=cjs --platform=node",
-    "esbuild": "npm run esbuild-base -- --sourcemap",
-    "sync-types:win": "robocopy .\\src\\@types .\\dist\\@types /E",
-    "sync-types:unix": "mkdir -p ./dist/@types && cp -r ./src/@types ./dist/@types",
-    "postesbuild": "node -e \"const fs=require('fs');fs.cp('./src/@types','./dist/@types',{recursive:!0},e=>(e&&console.error(e)&&process.exit(1)));\"",
+    "esbuild": "npm run esbuild-base",
     "esbuild-watch": "npm run esbuild-base -- --sourcemap --watch",
     "format": "prettier --write src/",
     "test-compile": "tsc -p ./"

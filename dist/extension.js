@@ -123,7 +123,7 @@ var webRequest = new vscode.SnippetString().appendText('@webRequest { "selector"
 var addElement1 = new vscode.SnippetString().appendText("GM_addElement(").appendPlaceholder("parentNode").appendText(", ").appendPlaceholder("tagName").appendText(", {\n	").appendTabstop().appendText("\n});");
 var addElement2 = new vscode.SnippetString().appendText("GM_addElement(").appendPlaceholder("tagName").appendText(", {\n	").appendTabstop().appendText("\n});");
 
-// src/lib/stripIndent.mjs
+// src/lib/strip-indent.mjs
 function createStripIndent(options) {
   const stripIndent2 = (strings, ...values) => {
     const { escapeSpecialCharacters = false } = options;
@@ -140,7 +140,7 @@ function createStripIndent(options) {
   return stripIndent2;
 }
 var stripIndent = createStripIndent({});
-var stripIndent_default = stripIndent;
+var strip_indent_default = stripIndent;
 
 // src/lib/items.mjs
 var metadataItems = [
@@ -167,7 +167,7 @@ var metadataItems = [
     ],
     hover: {
       contents: [
-        new vscode2.MarkdownString().appendCodeblock("(property) userscript.metadata.name: <string>", "typescript").appendMarkdown("The name of the script, shown in script list and menus. It must be unique within a `@namespace`. Internationalization is done by adding an appendix naming the locale.").appendCodeblock(stripIndent_default`
+        new vscode2.MarkdownString().appendCodeblock("(property) userscript.metadata.name: <string>", "typescript").appendMarkdown("The name of the script, shown in script list and menus. It must be unique within a `@namespace`. Internationalization is done by adding an appendix naming the locale.").appendCodeblock(strip_indent_default`
           // @name     A test
           // @name:de  Ein Test
         `, "javascript")
@@ -278,7 +278,7 @@ var metadataItems = [
     ],
     hover: {
       contents: [
-        new vscode2.MarkdownString().appendCodeblock("(property) userscript.metadata.description: <string>", "typescript").appendMarkdown("A brief summary to describe the script. Internationalization is done by adding an appendix naming the locale.").appendCodeblock(stripIndent_default`
+        new vscode2.MarkdownString().appendCodeblock("(property) userscript.metadata.description: <string>", "typescript").appendMarkdown("A brief summary to describe the script. Internationalization is done by adding an appendix naming the locale.").appendCodeblock(strip_indent_default`
           // @description    This userscript does wonderful things
           // @description:de Dieses Userscript tut wundervolle Dinge
         `, "javascript")
@@ -580,7 +580,7 @@ var metadataItems = [
     ],
     hover: {
       contents: [
-        new vscode2.MarkdownString().appendCodeblock("(property) userscript.metadata.grant: <enum>", "typescript").appendMarkdown("`@grant` is used to whitelist `GM_*` and `GM.*` functions, the `unsafeWindow` object and some powerful `window` functions. Multiple tag instances are allowed.").appendCodeblock(stripIndent_default`
+        new vscode2.MarkdownString().appendCodeblock("(property) userscript.metadata.grant: <enum>", "typescript").appendMarkdown("`@grant` is used to whitelist `GM_*` and `GM.*` functions, the `unsafeWindow` object and some powerful `window` functions. Multiple tag instances are allowed.").appendCodeblock(strip_indent_default`
           // @grant none
           // @grant GM_setValue
           // @grant GM_getValue
@@ -770,7 +770,7 @@ var metadataItems = [
     ],
     hover: {
       contents: [
-        new vscode2.MarkdownString().appendCodeblock("(property) userscript.metadata.antifeature: <enum> <string>", "typescript").appendMarkdown("Allows script developers to disclose whether they monetize their scripts (required by [GreasyFork](https://greasyfork.org/)). Internationalization is done by adding an appendix naming the locale.").appendCodeblock(stripIndent_default`
+        new vscode2.MarkdownString().appendCodeblock("(property) userscript.metadata.antifeature: <enum> <string>", "typescript").appendMarkdown("Allows script developers to disclose whether they monetize their scripts (required by [GreasyFork](https://greasyfork.org/)). Internationalization is done by adding an appendix naming the locale.").appendCodeblock(strip_indent_default`
           // @antifeature     ads       We show you ads
           // @antifeature:fr  ads       Nous vous montrons des publicités
           // @antifeature     tracking  We have some sort of analytics included
@@ -806,7 +806,7 @@ var metadataItems = [
     ],
     hover: {
       contents: [
-        new vscode2.MarkdownString().appendCodeblock("(property) userscript.metadata.require: <string>", "typescript").appendMarkdown('The URL to a JavaScript file that is loaded and executed before the userscript itself starts running. URL may be relative to the URL the script is being installed from. Scripts loaded via `@require` and their *"use strict"* statements might affect the userscript\u2019s strict mode. See [sub-resource integrity](https://www.tampermonkey.net/documentation.php?locale=en#api:Subresource_Integrity) for information on how to ensure integrity. Multiple tag instances are allowed.').appendCodeblock(stripIndent_default`
+        new vscode2.MarkdownString().appendCodeblock("(property) userscript.metadata.require: <string>", "typescript").appendMarkdown('The URL to a JavaScript file that is loaded and executed before the userscript itself starts running. URL may be relative to the URL the script is being installed from. Scripts loaded via `@require` and their *"use strict"* statements might affect the userscript\u2019s strict mode. See [sub-resource integrity](https://www.tampermonkey.net/documentation.php?locale=en#api:Subresource_Integrity) for information on how to ensure integrity. Multiple tag instances are allowed.').appendCodeblock(strip_indent_default`
           // @require https://code.jquery.com/jquery-2.1.4.min.js
           // @require https://code.jquery.com/jquery-2.1.3.min.js#sha256=23456...
           // @require https://code.jquery.com/jquery-2.1.2.min.js#md5=34567...,sha256=6789...
@@ -839,7 +839,7 @@ var metadataItems = [
     ],
     hover: {
       contents: [
-        new vscode2.MarkdownString().appendCodeblock("(property) userscript.metadata.resource: <string> <string>", "typescript").appendMarkdown("Preloads resources that can by accessed via `GM_getResourceURL` and `GM_getResourceText` in the script. See [sub-resource integrity](https://www.tampermonkey.net/documentation.php?locale=en#api:Subresource_Integrity) for information on how to ensure integrity. Multiple tag instances are allowed.").appendCodeblock(stripIndent_default`
+        new vscode2.MarkdownString().appendCodeblock("(property) userscript.metadata.resource: <string> <string>", "typescript").appendMarkdown("Preloads resources that can by accessed via `GM_getResourceURL` and `GM_getResourceText` in the script. See [sub-resource integrity](https://www.tampermonkey.net/documentation.php?locale=en#api:Subresource_Integrity) for information on how to ensure integrity. Multiple tag instances are allowed.").appendCodeblock(strip_indent_default`
           // @resource icon1        http://www.tampermonkey.net/favicon.ico
           // @resource icon2        /images/icon.png
           // @resource html         http://www.tampermonkey.net/index.html
@@ -877,7 +877,7 @@ var metadataItems = [
     ],
     hover: {
       contents: [
-        new vscode2.MarkdownString().appendCodeblock("(property) userscript.metadata.include: <string>", "typescript").appendMarkdown("The pages on which script should run. Multiple tag instances are allowed. `@include` doesn't support the URL hash parameter. You have to match the path without the hash parameter and make use of [window.onurlchange](https://www.tampermonkey.net/documentation.php?locale=en#api:window.onurlchange).").appendCodeblock(stripIndent_default`
+        new vscode2.MarkdownString().appendCodeblock("(property) userscript.metadata.include: <string>", "typescript").appendMarkdown("The pages on which script should run. Multiple tag instances are allowed. `@include` doesn't support the URL hash parameter. You have to match the path without the hash parameter and make use of [window.onurlchange](https://www.tampermonkey.net/documentation.php?locale=en#api:window.onurlchange).").appendCodeblock(strip_indent_default`
           // @include http://www.tampermonkey.net/*
           // @include http://*
           // @include https://*
@@ -910,7 +910,7 @@ var metadataItems = [
     ],
     hover: {
       contents: [
-        new vscode2.MarkdownString().appendCodeblock("(property) userscript.metadata.match: <string>", "typescript").appendMarkdown("The `@match` directive is a URL pattern that matches the web pages that your script should run on. Wildcards and multiple tag instances are allowed.\n\nSee [match patterns](https://developer.chrome.com/docs/extensions/mv2/match_patterns/) for more information. **Note:** The `<all_urls>` statement is not yet supported.").appendCodeblock(stripIndent_default`
+        new vscode2.MarkdownString().appendCodeblock("(property) userscript.metadata.match: <string>", "typescript").appendMarkdown("The `@match` directive is a URL pattern that matches the web pages that your script should run on. Wildcards and multiple tag instances are allowed.\n\nSee [match patterns](https://developer.chrome.com/docs/extensions/mv2/match_patterns/) for more information. **Note:** The `<all_urls>` statement is not yet supported.").appendCodeblock(strip_indent_default`
           // @match \u002A://\u002A/\u002A
           // @match https://\u002A/\u002A
           // @match http://\u002A/foo\u002A
@@ -1066,7 +1066,7 @@ var metadataItems = [
     ],
     hover: {
       contents: [
-        new vscode2.MarkdownString().appendCodeblock("(property) userscript.metadata.connect: <string>", "typescript").appendMarkdown('The domains / subdomains which are allowed to be retrieved by `GM_xmlhttpRequest`. Top-level domains are not allowed. Multiple tag instances are allowed.\n\nCan be:\n- a domain name like `example.com` (this will also allow all subdomains).\n- a subdomain name like subdomain.example.com.\n- `self` - the current domain.\n- localhost to access the localhost.\n- an IP address like `127.0.0.1`.\n- `*` - all domains.\nIf it\u2019s not possible to declare all domains a userscript might connect to then it\u2019s good practice to do the following:\n\n1. Declare _all known_ or at least _all common_ domains that might be connected by the script to avoid the confirmation dialog for most users.\n2. Specify `@connect *` to allow Tampermonkey to offer an "Always allow all domains" button.\n\nUsers can also whitelist all requests by adding `*` to the user domain whitelist at the script settings tab.\n\nBoth the initial and the final URL will be checked. For backwards compatibility to Scriptish, `@domain` tags are interpreted as well.').appendCodeblock(stripIndent_default`
+        new vscode2.MarkdownString().appendCodeblock("(property) userscript.metadata.connect: <string>", "typescript").appendMarkdown('The domains / subdomains which are allowed to be retrieved by `GM_xmlhttpRequest`. Top-level domains are not allowed. Multiple tag instances are allowed.\n\nCan be:\n- a domain name like `example.com` (this will also allow all subdomains).\n- a subdomain name like subdomain.example.com.\n- `self` - the current domain.\n- localhost to access the localhost.\n- an IP address like `127.0.0.1`.\n- `*` - all domains.\nIf it\u2019s not possible to declare all domains a userscript might connect to then it\u2019s good practice to do the following:\n\n1. Declare _all known_ or at least _all common_ domains that might be connected by the script to avoid the confirmation dialog for most users.\n2. Specify `@connect *` to allow Tampermonkey to offer an "Always allow all domains" button.\n\nUsers can also whitelist all requests by adding `*` to the user domain whitelist at the script settings tab.\n\nBoth the initial and the final URL will be checked. For backwards compatibility to Scriptish, `@domain` tags are interpreted as well.').appendCodeblock(strip_indent_default`
           // @connect tmnk.net
           // @connect www.tampermonkey.net
           // @connect self
@@ -1268,7 +1268,7 @@ var apiItems = [
     ],
     hover: {
       contents: [
-        new vscode2.MarkdownString().appendCodeblock("function GM_addElement(parentNode: HTMLElement, tagName: string, attributes: { [key: string]: string | boolean | number }): HTMLElement (+1 overload)", "typescript").appendMarkdown("Creates an HTML element specified by `tagName`, applies all given `attributes`, and returns the injected HTML element. The injected element will be appended to the document\u2019s head or body unless a `parentNode` is given, in which case the new element is appended to it instead. Any attribute that is valid on for the element type specified by the `tagName` is allowed in `attributes`.").appendCodeblock(stripIndent_default`
+        new vscode2.MarkdownString().appendCodeblock("function GM_addElement(parentNode: HTMLElement, tagName: string, attributes: { [key: string]: string | boolean | number }): HTMLElement (+1 overload)", "typescript").appendMarkdown("Creates an HTML element specified by `tagName`, applies all given `attributes`, and returns the injected HTML element. The injected element will be appended to the document\u2019s head or body unless a `parentNode` is given, in which case the new element is appended to it instead. Any attribute that is valid on for the element type specified by the `tagName` is allowed in `attributes`.").appendCodeblock(strip_indent_default`
           GM_addElement('script', {
             textContent: 'window.foo = "bar";'
           });
@@ -1360,7 +1360,7 @@ var apiItems = [
     ],
     hover: {
       contents: [
-        new vscode2.MarkdownString().appendCodeblock("function GM_download(details: DownloadDetails): DownloadResponse (+1 overload)", "typescript").appendMarkdown("Downloads a URL to a local file.").appendCodeblock(stripIndent_default`
+        new vscode2.MarkdownString().appendCodeblock("function GM_download(details: DownloadDetails): DownloadResponse (+1 overload)", "typescript").appendMarkdown("Downloads a URL to a local file.").appendCodeblock(strip_indent_default`
           GM_download('http://example.com/file.txt', 'file.txt');
 
           const download = GM_download({
@@ -1380,7 +1380,7 @@ var apiItems = [
         parameters: [
           {
             label: "details: DownloadDetails",
-            documentation: new vscode2.MarkdownString().appendCodeblock(stripIndent_default`
+            documentation: new vscode2.MarkdownString().appendCodeblock(strip_indent_default`
               type DownloadDetails = {
                 url: string;
                 name: string;
@@ -1423,7 +1423,7 @@ var apiItems = [
     ],
     hover: {
       contents: [
-        new vscode2.MarkdownString().appendCodeblock("function GM_getResourceText(name: string): string", "typescript").appendMarkdown("Access the text of a resource (such as a JavaScript or CSS file) that has been included in a userscript via `@resource`.").appendCodeblock(stripIndent_default`
+        new vscode2.MarkdownString().appendCodeblock("function GM_getResourceText(name: string): string", "typescript").appendMarkdown("Access the text of a resource (such as a JavaScript or CSS file) that has been included in a userscript via `@resource`.").appendCodeblock(strip_indent_default`
           const scriptText = GM_getResourceText('myscript.js');
           const scriptText2 = await GM.getResourceText('myscript.js');
           const script = document.createElement('script');
@@ -1535,7 +1535,7 @@ var apiItems = [
         parameters: [
           {
             label: "details: NotificationDetails",
-            documentation: new vscode2.MarkdownString().appendCodeblock(stripIndent_default`
+            documentation: new vscode2.MarkdownString().appendCodeblock(strip_indent_default`
               type NotificationDetails = {
                 text: string;
                 title?: string;
@@ -1909,7 +1909,7 @@ The function return a menu entry ID that can be used to unregister the command.`
   }
 ];
 
-// src/lib/updateConfig.mjs
+// src/lib/update-config.mjs
 var import_fs = require("fs");
 var import_path = require("path");
 var vscode3 = __toESM(require("vscode"), 1);
@@ -1929,7 +1929,7 @@ function updateConfig(configName) {
             config3.compilerOptions.typeRoots = [];
           }
           config3.compilerOptions.typeRoots.push("./node_modules/@types");
-          config3.compilerOptions.typeRoots.push("./src/@types");
+          config3.compilerOptions.typeRoots.push("@types");
         } else if (configName === ".eslintrc") {
           if (!config3.env) {
             config3.env = {};
@@ -1953,7 +1953,7 @@ function updateConfig(configName) {
               compilerOptions: {
                 typeRoots: [
                   "./node_modules/@types",
-                  "./src/@types"
+                  "@types"
                 ]
               }
             };
@@ -1982,7 +1982,6 @@ function updateConfig(configName) {
 // src/extension.mjs
 var import_path2 = __toESM(require("path"), 1);
 function activate(context) {
-  vscode4.window.showInformationMessage('Congratulations, your extension "Monkey Wrench" is now active!');
   vscode4.languages.setLanguageConfiguration("javascript", {
     wordPattern: /(-?\d*\.\d\w*)|([^\`\~\!\#\%\^\&\*\(\)\-\=\+\[\{\]\}\\\|\;\:\'\"\,\.\<\>\/\?\s]+)/g,
     onEnterRules: [
@@ -1996,134 +1995,56 @@ function activate(context) {
     ]
   });
   commandDisposables.push(
-    vscode4.commands.registerCommand("monkey-wrench.helloWorld", () => {
-      vscode4.window.showInformationMessage("Hello World from Monkey Wrench!");
-    }),
-    vscode4.commands.registerCommand("monkey-wrench.updateConfigs", async () => {
-      if (config2.get("enableTsConfigUpdate")) {
+    vscode4.commands.registerCommand("monkey-wrench.update-configs", async () => {
+      if (config2.get("enable-ts-config-update")) {
         updateConfig("tsconfig");
       }
-      if (config2.get("enableJsConfigUpdate")) {
+      if (config2.get("enable-js-config-update")) {
         updateConfig("jsconfig");
       }
-      if (config2.get("enableEslintConfigUpdate")) {
+      if (config2.get("enable-eslint-config-update")) {
         updateConfig(".eslintrc");
       }
     })
   );
   configDisposables.push(vscode4.workspace.onDidChangeConfiguration((e) => {
-    if (e.affectsConfiguration("monkey-wrench.enableTsConfigUpdate")) {
+    if (e.affectsConfiguration("monkey-wrench.enable-ts-config-update")) {
       updateConfig("tsconfig");
     }
-    if (e.affectsConfiguration("monkey-wrench.enableJsConfigUpdate")) {
+    if (e.affectsConfiguration("monkey-wrench.enable-js-config-update")) {
       updateConfig("jsconfig");
     }
-    if (e.affectsConfiguration("monkey-wrench.enableEslintConfigUpdate")) {
+    if (e.affectsConfiguration("monkey-wrench.enable-eslint-config-update")) {
       updateConfig(".eslintrc");
     }
   }));
   hoverProviders.push(
-    vscode4.languages.registerHoverProvider("javascript", {
-      provideHover(document, position, token) {
-        if (!allSystemsGo(document))
-          return;
-        const wordRange = document.getWordRangeAtPosition(position);
-        if (!wordRange)
-          return;
-        const word = document.getText(wordRange);
-        const item = metadataItems.find((item2) => item2.label === word && item2.hover);
-        if (!item)
-          return;
-        item.hover.range = wordRange;
-        return item.hover;
-      }
-    }),
-    vscode4.languages.registerHoverProvider("javascript", {
-      provideHover(document, position, token) {
-        if (!allSystemsGo(document))
-          return;
-        const wordRange = document.getWordRangeAtPosition(position);
-        if (!wordRange)
-          return;
-        const word = document.getText(wordRange);
-        const item = apiItems.find((item2) => item2.label === word && item2.hover);
-        if (!item)
-          return;
-        item.hover.range = wordRange;
-        return item.hover;
-      }
-    })
+    vscode4.languages.registerHoverProvider("javascript", apiHoverProvider),
+    vscode4.languages.registerHoverProvider("javascript", metadataHoverProvider)
   );
   completionItemProviders.push(
-    vscode4.languages.registerCompletionItemProvider("javascript", ApiCompletionItemProvider),
-    vscode4.languages.registerCompletionItemProvider("javascript", MetadataCompletionItemProvider),
-    vscode4.languages.registerCompletionItemProvider("javascript", MetadataParametersCompletionItemProvider, " ")
+    vscode4.languages.registerCompletionItemProvider("javascript", apiCompletionItemProvider),
+    vscode4.languages.registerCompletionItemProvider("javascript", metadataCompletionItemProvider),
+    vscode4.languages.registerCompletionItemProvider("javascript", metadataParametersCompletionItemProvider, " ")
   );
-  signatureHelpProviders.push(vscode4.languages.registerSignatureHelpProvider("javascript", {
-    provideSignatureHelp(document, position, token, context2) {
-      const line = document.lineAt(position.line).text;
-      const functionCallStart = line.lastIndexOf("GM", position.character);
-      const functionCall = line.substring(functionCallStart, position.character);
-      const [functionName, parameterString] = functionCall.split("(");
-      const parameters = parameterString.split(",");
-      const parameterIndex = parameters.length - 1;
-      const signatureHelp = new vscode4.SignatureHelp();
-      signatureHelp.signatures = apiItems.find((item) => item.label === functionName).signatures;
-      if (!signatureHelp.signatures.length)
-        return;
-      signatureHelp.activeSignature = 0;
-      signatureHelp.activeParameter = parameterIndex;
-      return signatureHelp;
-    }
-  }, { triggerCharacters: ["(", ","], retriggerCharacters: [","] }));
-  signatureHelpProviders.push(vscode4.languages.registerSignatureHelpProvider("javascript", {
-    provideSignatureHelp(document, position, token, context2) {
-      if (!allSystemsGo(document))
-        return;
-      const line = document.lineAt(position.line).text;
-      const match = line.match(/@\w+/);
-      const label = match[0];
-      const labelIndex = match.index;
-      const signatureHelp = new vscode4.SignatureHelp();
-      signatureHelp.signatures = metadataItems.find((item) => item.label === label).signatures;
-      if (!signatureHelp.signatures.length)
-        return;
-      signatureHelp.activeSignature = 0;
-      let parameterIndex = line.substring(label.length + labelIndex).replaceAll(/\s+/g, "|").split("|").length - 2;
-      if (parameterIndex > signatureHelp.signatures[0].parameters.length - 1)
-        return;
-      signatureHelp.activeParameter = parameterIndex;
-      return signatureHelp;
-    }
-  }, { triggerCharacters: [" "], retriggerCharacters: [" "] }));
-  definitionProviders.push(vscode4.languages.registerDefinitionProvider("javascript", {
-    provideDefinition(document, position, token) {
-      const wordRange = document.getWordRangeAtPosition(position);
-      const name = document.getText(wordRange);
-      for (let line = 0; line < document.lineCount; line++) {
-        const lineText = document.lineAt(line).text;
-        if (lineText.includes(`function ${name}`)) {
-          return new vscode4.Location(document.uri, new vscode4.Position(line, 0));
-        }
-      }
-      return null;
-    }
-  }));
-  typeDefinitionProviders.push(vscode4.languages.registerTypeDefinitionProvider("javascript", {
-    async provideTypeDefinition(document, position, token) {
-      const wordRange = document.getWordRangeAtPosition(position);
-      const name = document.getText(wordRange);
-      const predefinedFilePath = import_path2.default.join(__dirname, "@types", "tampermonkey.d.ts");
-      const doc = await vscode4.workspace.openTextDocument(vscode4.Uri.file(predefinedFilePath));
-      for (let line = 0; line < doc.lineCount; line++) {
-        const lineText = doc.lineAt(line).text;
-        if (lineText.includes(`function ${name}`)) {
-          return new vscode4.Location(vscode4.Uri.file(predefinedFilePath), new vscode4.Position(line, 0));
-        }
-      }
-      return null;
-    }
-  }));
+  signatureHelpProviders.push(
+    vscode4.languages.registerSignatureHelpProvider(
+      "javascript",
+      apiSignatureHelpProvider,
+      { triggerCharacters: ["(", ","], retriggerCharacters: [","] }
+    ),
+    vscode4.languages.registerSignatureHelpProvider(
+      "javascript",
+      metadataSignatureHelpProvider,
+      { triggerCharacters: [" "], retriggerCharacters: [" "] }
+    )
+  );
+  definitionProviders.push(
+    vscode4.languages.registerDefinitionProvider("javascript", definitionProvider)
+  );
+  typeDefinitionProviders.push(
+    vscode4.languages.registerTypeDefinitionProvider("javascript", typeDefinitionProvider)
+  );
   context.subscriptions.push(
     ...commandDisposables,
     ...configDisposables,
@@ -2135,7 +2056,6 @@ function activate(context) {
   );
 }
 function deactivate() {
-  vscode4.window.showInformationMessage('Your extension "Monkey Wrench" is now deactivated!');
 }
 var commandDisposables = [];
 var configDisposables = [];
@@ -2146,7 +2066,7 @@ var definitionProviders = [];
 var typeDefinitionProviders = [];
 var config2 = vscode4.workspace.getConfiguration("monkey-wrench");
 var allSystemsGo = (document) => {
-  const activationCondition = config2.get("activationCondition");
+  const activationCondition = config2.get("activation-condition");
   const fileExtensionCheckPassed = (() => {
     const activeFileExtensions = activationCondition.fileExtensions;
     if (!activeFileExtensions.length)
@@ -2161,7 +2081,7 @@ var allSystemsGo = (document) => {
   })();
   return fileExtensionCheckPassed && userscriptHeaderCheckPassed;
 };
-var ApiCompletionItemProvider = {
+var apiCompletionItemProvider = {
   provideCompletionItems(document, position, token, context) {
     if (!allSystemsGo(document))
       return;
@@ -2172,7 +2092,7 @@ var ApiCompletionItemProvider = {
     return apiItems.filter((item) => item.label.startsWith(word) && item.completions.length).map((item) => item.completions).flat().filter((x) => x.kind === vscode4.CompletionItemKind.Function || vscode4.CompletionItemKind.Variable);
   }
 };
-var MetadataCompletionItemProvider = {
+var metadataCompletionItemProvider = {
   provideCompletionItems(document, position, token, context) {
     if (!allSystemsGo(document))
       return;
@@ -2183,7 +2103,7 @@ var MetadataCompletionItemProvider = {
     return metadataItems.filter((item) => item.label.startsWith(word) && item.completions.length).map((item) => item.completions).flat().filter((x) => x.kind === vscode4.CompletionItemKind.Field || x.kind === vscode4.CompletionItemKind.Snippet);
   }
 };
-var MetadataParametersCompletionItemProvider = {
+var metadataParametersCompletionItemProvider = {
   provideCompletionItems(document, position, token, context) {
     if (!allSystemsGo(document))
       return;
@@ -2197,9 +2117,103 @@ var MetadataParametersCompletionItemProvider = {
     }
   }
 };
+var apiHoverProvider = {
+  provideHover(document, position, token) {
+    if (!allSystemsGo(document))
+      return;
+    const wordRange = document.getWordRangeAtPosition(position);
+    if (!wordRange)
+      return;
+    const word = document.getText(wordRange);
+    const item = apiItems.find((item2) => item2.label === word && item2.hover);
+    if (!item)
+      return;
+    item.hover.range = wordRange;
+    return item.hover;
+  }
+};
+var metadataHoverProvider = {
+  provideHover(document, position, token) {
+    if (!allSystemsGo(document))
+      return;
+    const wordRange = document.getWordRangeAtPosition(position);
+    if (!wordRange)
+      return;
+    const word = document.getText(wordRange);
+    const item = metadataItems.find((item2) => item2.label === word && item2.hover);
+    if (!item)
+      return;
+    item.hover.range = wordRange;
+    return item.hover;
+  }
+};
+var definitionProvider = {
+  provideDefinition(document, position, token) {
+    const wordRange = document.getWordRangeAtPosition(position);
+    const name = document.getText(wordRange);
+    for (let line = 0; line < document.lineCount; line++) {
+      const lineText = document.lineAt(line).text;
+      if (lineText.includes(`function ${name}`)) {
+        return new vscode4.Location(document.uri, new vscode4.Position(line, 0));
+      }
+    }
+    return null;
+  }
+};
+var typeDefinitionProvider = {
+  async provideTypeDefinition(document, position, token) {
+    const wordRange = document.getWordRangeAtPosition(position);
+    const name = document.getText(wordRange);
+    const predefinedFilePath = import_path2.default.join(__dirname, "..", "@types", "tampermonkey.d.ts");
+    const doc = await vscode4.workspace.openTextDocument(vscode4.Uri.file(predefinedFilePath));
+    for (let line = 0; line < doc.lineCount; line++) {
+      const lineText = doc.lineAt(line).text;
+      if (lineText.includes(`function ${name}`)) {
+        return new vscode4.Location(vscode4.Uri.file(predefinedFilePath), new vscode4.Position(line, 0));
+      }
+    }
+    return null;
+  }
+};
+var apiSignatureHelpProvider = {
+  provideSignatureHelp(document, position, token, context) {
+    const line = document.lineAt(position.line).text;
+    const functionCallStart = line.lastIndexOf("GM", position.character);
+    const functionCall = line.substring(functionCallStart, position.character);
+    const [functionName, parameterString] = functionCall.split("(");
+    const parameters = parameterString.split(",");
+    const parameterIndex = parameters.length - 1;
+    const signatureHelp = new vscode4.SignatureHelp();
+    signatureHelp.signatures = apiItems.find((item) => item.label === functionName).signatures;
+    if (!signatureHelp.signatures.length)
+      return;
+    signatureHelp.activeSignature = 0;
+    signatureHelp.activeParameter = parameterIndex;
+    return signatureHelp;
+  }
+};
+var metadataSignatureHelpProvider = {
+  provideSignatureHelp(document, position, token, context) {
+    if (!allSystemsGo(document))
+      return;
+    const line = document.lineAt(position.line).text;
+    const match = line.match(/@\w+/);
+    const label = match[0];
+    const labelIndex = match.index;
+    const signatureHelp = new vscode4.SignatureHelp();
+    signatureHelp.signatures = metadataItems.find((item) => item.label === label).signatures;
+    if (!signatureHelp.signatures.length)
+      return;
+    signatureHelp.activeSignature = 0;
+    let parameterIndex = line.substring(label.length + labelIndex).replaceAll(/\s+/g, "|").split("|").length - 2;
+    if (parameterIndex > signatureHelp.signatures[0].parameters.length - 1)
+      return;
+    signatureHelp.activeParameter = parameterIndex;
+    return signatureHelp;
+  }
+};
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
   activate,
   deactivate
 });
-//# sourceMappingURL=extension.js.map
