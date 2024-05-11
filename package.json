@@ -1,0 +1,175 @@
+{
+  "name": "monkey-wrench",
+  "displayName": "Monkey Wrench",
+  "description": "Adds support for UserScripts (i.e. Greasemonkey, Tampermonkey, etc.).",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/song-dog/vscode-monkey-wrench.git"
+  },
+  "icon": "images/icon.webp",
+  "version": "0.0.1",
+  "license": "SEE LICENSE IN LICENSE",
+  "engines": {
+    "vscode": "^1.88.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "galleryBanner": {
+    "color": "#007ACC",
+    "theme": "dark"
+  },
+  "keywords": [
+		"userscript",
+		"Tampermonkey",
+		"Greasemonkey",
+		"user.js",
+    "chrome"
+	],
+  "homepage": "https://github.com/song-dog/vscode-monkey-wrench/README.md",
+  "type": "commonjs",
+  "publisher": "coyote-studios",
+  "author": {
+    "name": "coyote",
+    "email": "coyote@coyotestudios.xyz",
+    "url": "https://coyotestudios.xyz"
+  },
+  "activationEvents": [
+		"onLanguage:javascript",
+    "workspaceContains:**/.user.js"
+	],
+  "main": "./dist/extension.js",
+  "badges": [
+    {
+      "url": "https://vsmarketplacebadge.apphb.com/version-short/coyote-studios.vscode-monkey-wrench.svg",
+      "href": "https://marketplace.visualstudio.com/items?itemName=coyote-studios.vscode-monkey-wrench",
+      "description": "Visual Studio Marketplace Version"
+    },
+    {
+      "url": "https://vsmarketplacebadge.apphb.com/installs-short/coyote-studios.vscode-monkey-wrench.svg",
+      "href": "https://marketplace.visualstudio.com/items?itemName=coyote-studios.vscode-monkey-wrench",
+      "description": "Visual Studio Marketplace Installs"
+    },
+    {
+      "url": "https://vsmarketplacebadge.apphb.com/rating-short/coyote-studios.vscode-monkey-wrench.svg",
+      "href": "https://marketplace.visualstudio.com/items?itemName=coyote-studios.vscode-monkey-wrench",
+      "description": "Visual Studio Marketplace Rating"
+    }
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "monkey-wrench.helloWorld",
+        "title": "Hello World",
+        "category": "Hello",
+        "icon": {
+          "light": "images/icon-light.svg",
+          "dark": "images/icon-dark.svg"
+        }
+      }
+    ],
+    "configuration": {
+      "title": "Monkey Wrench",
+      "properties": {
+        "monkey-wrench.metadata.namespace": {
+          "type": "string",
+          "default": "URL",
+          "markdownDescription": "Used for auto filling `@namespace` in the code snippet `UserScript`."
+        },
+        "monkey-wrench.metadata.author": {
+          "type": "string",
+          "default": "Your name",
+          "markdownDescription": "Used for auto filling `@author` in the code snippet `UserScript`."
+        },
+        "monkey-wrench.metadata.icon": {
+          "type": "string",
+          "default": "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPCFET0NUWVBFIHN2Zz4KPHN2ZyB2aWV3Qm94PSIwIDAgNTAwIDUwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8ZGVmcz4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iZGVzZXJ0LWJsdWUiIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIiB4MT0iMjUwIiB5MT0iLTAuMDAxIiB4Mj0iMjUwIiB5Mj0iNTAwLjAwMSIgc3ByZWFkTWV0aG9kPSJyZWZsZWN0Ij4KICAgICAgPHN0b3Agc3R5bGU9InN0b3AtY29sb3I6IGNvbG9yKGRpc3BsYXktcDMgMC41MyAwLjcgMC43NSk7IiBvZmZzZXQ9IjAiLz4KICAgICAgPHN0b3Agc3R5bGU9InN0b3AtY29sb3I6IGNvbG9yKGRpc3BsYXktcDMgMC42NDMwOSwgMC42OTIxNSwgMC41NjYxNCk7IiBvZmZzZXQ9IjAuMzEzIi8+CiAgICAgIDxzdG9wIHN0eWxlPSJzdG9wLWNvbG9yOiBjb2xvcihkaXNwbGF5LXAzIDAuNjEyOTksIDAuNTYzMDEsIDAuMzM0Nyk7IiBvZmZzZXQ9IjAuNTE5Ii8+CiAgICAgIDxzdG9wIHN0eWxlPSJzdG9wLWNvbG9yOiBjb2xvcihkaXNwbGF5LXAzIDAuNzYgMC41NyAwLjI2KTsiIG9mZnNldD0iMC43MTkiLz4KICAgICAgPHN0b3Agc3R5bGU9InN0b3AtY29sb3I6IGNvbG9yKGRpc3BsYXktcDMgMC41MiAwLjE1IDAuMDcpOyIgb2Zmc2V0PSIxIi8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogIDwvZGVmcz4KICA8ZWxsaXBzZSBwYWludC1vcmRlcj0iZmlsbCIgZmlsbC1ydWxlPSJldmVub2RkIiBmaWxsPSJ1cmwoJyNkZXNlcnQtYmx1ZScpIiBjeD0iMjUwIiBjeT0iMjUwIiByeD0iMjUwIiByeT0iMjUwLjAwMSIgdHJhbnNmb3JtPSJtYXRyaXgoMSwgMCwgMCwgMSwgMCwgMCkiLz4KPC9zdmc+",
+          "markdownDescription": "Used for auto filling `@icon` in the code snippet `UserScript`."
+        },
+        "monkey-wrench.activationCondition.fileExtensions": {
+          "type": "array",
+          "markdownDescription": "Completion, hover, and code snippets are only enabled in files with specific extensions.\n\nSyntax highlighting always takes effect because injection grammar contributions aren't dynamic, see [#53885](https://github.com/microsoft/vscode/issues/53885).",
+          "default": [
+            ".user.js"
+          ],
+          "items": {
+            "type": "string",
+            "pattern": "^\\..+$"
+          }
+        },
+        "monkey-wrench.activationCondition.userscriptHeader": {
+          "type": "boolean",
+          "markdownDescription": "Completion, hover, and code snippets are only enabled in files that start with `// ==UserScript==`.\n\nSyntax highlighting always takes effect because injection grammar contributions aren't dynamic, see [#53885](https://github.com/microsoft/vscode/issues/53885).",
+          "default": false
+        },
+        "monkey-wrench.enableTsConfigUpdate": {
+          "type": "boolean",
+          "default": false,
+          "markdownDescription": "Enable automatic updates to `tsconfig.json`."
+        },
+        "monkey-wrench.enableJsConfigUpdate": {
+          "type": "boolean",
+          "default": false,
+          "markdownDescription": "Enable automatic updates to `jsconfig.json`."
+        },
+        "monkey-wrench.enableEslintConfigUpdate": {
+          "type": "boolean",
+          "default": false,
+          "markdownDescription": "Enable automatic updates to `.eslintrc.json`."
+        }
+      }
+    },
+    "languages": [
+      {
+        "id": "javascript",
+        "aliases": [
+          "JavaScript",
+          "js"
+        ],
+        "extensions": [".user.js"],
+        "filenames": []
+      }
+    ],
+    "grammars": [
+      {
+        "injectTo": ["source.js"],
+        "scopeName": "source.js.user",
+        "path": "./src/syntaxes/userscript.tmLanguage.json",
+        "embeddedLanguages": {"source.css": "css"}
+      }
+    ],
+    "menus": {
+      "editor/context": [
+        {
+          "when": "resourceFilename =~ /\\.user\\.js$/",
+          "command": "monkey-wrench.helloWorld",
+          "group": "navigation"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "lint": "eslint src/ --ext .ts",
+    "pretest": "npm run lint",
+    "test": "vscode-test",
+    "vscode:prepublish": "npm run esbuild-base -- --minify",
+    "esbuild-base": "esbuild ./src/extension.mjs --bundle --outfile=dist/extension.js --external:vscode --format=cjs --platform=node",
+    "esbuild": "npm run esbuild-base -- --sourcemap",
+    "sync-types:win": "robocopy .\\src\\@types .\\dist\\@types /E",
+    "sync-types:unix": "mkdir -p ./dist/@types && cp -r ./src/@types ./dist/@types",
+    "postesbuild": "node -e \"const fs=require('fs');fs.cp('./src/@types','./dist/@types',{recursive:!0},e=>(e&&console.error(e)&&process.exit(1)));\"",
+    "esbuild-watch": "npm run esbuild-base -- --sourcemap --watch",
+    "format": "prettier --write src/",
+    "test-compile": "tsc -p ./"
+  },
+  "devDependencies": {
+    "@types/mocha": "^10.0.6",
+    "@types/node": "^18.19.30",
+    "@types/vscode": "^1.88.0",
+    "@vscode/test-cli": "^0.0.8",
+    "@vscode/test-electron": "^2.3.9",
+    "esbuild": "^0.20.2",
+    "eslint": "^8.57.0",
+    "typescript": "^5.4.4"
+  }
+}
