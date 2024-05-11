@@ -1,12 +1,21 @@
 # Monkey Wrench
 
-Adds support for userscripts providing syntax highlighting, completion, hover, and code snippets.
+Adds support for userscripts including:
 
-By default, most features of Monkey Wrench activate only when the filename ends with `.user.js` to prevent polluting non userscript files. You can modify the extension settings to make Monkey Wrench work in other javascript files.
+- Syntax highlighting
+- Completion
+- Hover
+- Snippets
+- Signature help
+- Definitions / Type definitions
+
+By default, any working with any file with the `.user.js` extension will activate the extension, though this behavior can be customized in the settings.
 
 ## Features
 
 ### Syntax Highlighting
+
+Metadata key and value highlighting, similar to JS Doc highlighting.
 
 ![Metadata syntax highlighting](./src/images/metadata.png "Metadata syntax highlighting")
 <span class="caption">*Metadata*</span>
@@ -16,6 +25,8 @@ By default, most features of Monkey Wrench activate only when the filename ends 
 
 ### Completion
 
+Every metadata key accounted for, as well as every GM_* / GM.* function.
+
 ![Metadata completion](./src/images/completion-meta.gif "Metadata completion")
 <span class="caption">*Metadata*</span>
 
@@ -24,17 +35,33 @@ By default, most features of Monkey Wrench activate only when the filename ends 
 
 ### Hover
 
+Full hover documentation and support for both metadata and functions.
+
 ![Code hover](./src/images/hover.png "Code hover")
 
-### Code Snippets
+### Snippets
 
-Type `userscript` or `metadata` to generate a userscript template. You can modify the default values of some meta data keys in the extension settings.
+Typing `userscript` will suggest a snippet to generate a userscript template. You can adjust the default values settings. Any metadata key that has an enumerated value associated with it will suggest those when typing.
 
-![Code Snippets](./src/images/snippets.gif)
+![Snippets](./src/images/snippets.gif)
+
+## Signature Help
+
+Every GM_* / GM.* function fully supported.
+
+## Definitions / Type Definitions
+
+Full typescript definitions included when right clicking a function or metadata key.
 
 ## Release Notes
 
 Please refer to the [CHANGELOG](./CHANGELOG.md).
+
+## To Do
+- Add images to documentation.
+- Add more examples to documentation.
+- Update signature help provider to better determine which overload is in use for those functions that have overloads.
+- Add additional metadata defaults to user settings for the template snippet.
 
 ## License
 
