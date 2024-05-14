@@ -41,18 +41,18 @@
   "main": "./dist/extension.js",
   "badges": [
     {
-      "url": "https://vsmarketplacebadges.dev/version-short/coyote-studios.vscode-monkey-wrench.svg",
-      "href": "https://marketplace.visualstudio.com/items?itemName=coyote-studios.vscode-monkey-wrench",
+      "url": "https://vsmarketplacebadges.dev/version-short/coyote-studios.monkey-wrench.svg",
+      "href": "https://marketplace.visualstudio.com/items?itemName=coyote-studios.monkey-wrench",
       "description": "Visual Studio Marketplace Version"
     },
     {
-      "url": "https://vsmarketplacebadges.dev/installs-short/coyote-studios.vscode-monkey-wrench.svg",
-      "href": "https://marketplace.visualstudio.com/items?itemName=coyote-studios.vscode-monkey-wrench",
+      "url": "https://vsmarketplacebadges.dev/installs-short/coyote-studios.monkey-wrench.svg",
+      "href": "https://marketplace.visualstudio.com/items?itemName=coyote-studios.monkey-wrench",
       "description": "Visual Studio Marketplace Installs"
     },
     {
-      "url": "https://vsmarketplacebadges.dev/rating-short/coyote-studios.vscode-monkey-wrench.svg",
-      "href": "https://marketplace.visualstudio.com/items?itemName=coyote-studios.vscode-monkey-wrench",
+      "url": "https://vsmarketplacebadges.dev/rating-short/coyote-studios.monkey-wrench.svg",
+      "href": "https://marketplace.visualstudio.com/items?itemName=coyote-studios.monkey-wrench",
       "description": "Visual Studio Marketplace Rating"
     }
   ],

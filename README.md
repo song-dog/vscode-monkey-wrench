@@ -83,7 +83,7 @@ Every GM_* / GM.* function fully supported. Every metadata key also supported.
 
 Full typescript definitions included when right clicking a function and selecting `Go to Type Definition`.
 
-<video src="./videos/type-definitions.mp4" autoplay loop muted playsinline poster="./images/type-definitions.png"></video>
+<!--<video src="./videos/type-definitions.mp4" autoplay loop muted playsinline poster="./images/type-definitions.png"></video>-->
 
 ## Release Notes
 
