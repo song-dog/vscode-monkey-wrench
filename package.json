@@ -7,7 +7,7 @@
     "url": "https://github.com/song-dog/vscode-monkey-wrench.git"
   },
   "icon": "images/icon.webp",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "license": "SEE LICENSE IN LICENSE",
   "engines": {
     "vscode": "^1.88.0"
@@ -136,7 +136,7 @@
         "injectTo": ["source.js"],
         "scopeName": "source.js.user",
         "path": "./syntaxes/userscript.tmLanguage.json",
-        "embeddedLanguages": {"source.css": "css"}
+        "embeddedLanguages": {"source.css": "css", "source.js": "javascript"}
       }
     ],
     "menus": {
