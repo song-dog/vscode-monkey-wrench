@@ -1,173 +1,176 @@
 {
-  "name": "monkey-wrench",
-  "displayName": "Monkey Wrench",
-  "description": "Adds support for UserScripts (i.e. Greasemonkey, Tampermonkey, etc.).",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/song-dog/vscode-monkey-wrench.git"
-  },
-  "icon": "images/icon.webp",
-  "version": "0.0.52",
-  "license": "SEE LICENSE IN LICENSE",
-  "engines": {
-    "vscode": "^1.88.0"
-  },
-  "categories": [
-    "Programming Languages"
-  ],
-  "galleryBanner": {
-    "color": "#8a5cf5",
-    "theme": "dark"
-  },
-  "keywords": [
-		"userscript",
-		"Tampermonkey",
-		"Greasemonkey",
-		"user.js",
-    "chrome"
-	],
-  "homepage": "https://github.com/song-dog/vscode-monkey-wrench/README.md",
-  "type": "commonjs",
-  "publisher": "coyote-studios",
-  "author": {
-    "name": "coyote",
-    "email": "coyote@coyotestudios.xyz",
-    "url": "https://coyotestudios.xyz"
-  },
-  "activationEvents": [
-		"onLanguage:javascript",
-    "workspaceContains:**/.user.js"
-	],
-  "main": "./dist/extension.js",
-  "badges": [
-    {
-      "url": "https://vsmarketplacebadges.dev/version-short/coyote-studios.monkey-wrench.svg",
-      "href": "https://marketplace.visualstudio.com/items?itemName=coyote-studios.monkey-wrench",
-      "description": "Visual Studio Marketplace Version"
+    "name": "monkey-wrench",
+    "displayName": "Monkey Wrench",
+    "description": "Adds support for UserScripts (i.e. Greasemonkey, Tampermonkey, etc.).",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/song-dog/vscode-monkey-wrench.git"
     },
-    {
-      "url": "https://vsmarketplacebadges.dev/installs-short/coyote-studios.monkey-wrench.svg",
-      "href": "https://marketplace.visualstudio.com/items?itemName=coyote-studios.monkey-wrench",
-      "description": "Visual Studio Marketplace Installs"
+    "icon": "images/icon.webp",
+    "version": "0.0.52",
+    "license": "SEE LICENSE IN LICENSE",
+    "engines": {
+        "vscode": "^1.88.0"
     },
-    {
-      "url": "https://vsmarketplacebadges.dev/rating-short/coyote-studios.monkey-wrench.svg",
-      "href": "https://marketplace.visualstudio.com/items?itemName=coyote-studios.monkey-wrench",
-      "description": "Visual Studio Marketplace Rating"
-    }
-  ],
-  "types": "@types/index.d.ts",
-  "contributes": {
-    "commands": [
-      {
-        "command": "monkey-wrench.update-configs",
-        "title": "Update Configs",
-        "category": "Monkey Wrench",
-        "icon": {
-          "light": "images/icon-light.svg",
-          "dark": "images/icon-dark.svg"
-        }
-      }
+    "categories": [
+        "Programming Languages"
     ],
-    "configuration": {
-      "title": "Monkey Wrench",
-      "properties": {
-        "monkey-wrench.metadata.namespace": {
-          "type": "string",
-          "default": "https://my-userscripts.com/",
-          "markdownDescription": "Used for auto filling `@namespace` in the code snippet `UserScript`."
-        },
-        "monkey-wrench.metadata.author": {
-          "type": "string",
-          "default": "You",
-          "markdownDescription": "Used for auto filling `@author` in the code snippet `UserScript`."
-        },
-        "monkey-wrench.metadata.icon": {
-          "type": "string",
-          "default": "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPCFET0NUWVBFIHN2Zz4KPHN2ZyB2aWV3Qm94PSIwIDAgNTAwIDUwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8ZGVmcz4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iZGVzZXJ0LWJsdWUiIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIiB4MT0iMjUwIiB5MT0iLTAuMDAxIiB4Mj0iMjUwIiB5Mj0iNTAwLjAwMSIgc3ByZWFkTWV0aG9kPSJyZWZsZWN0Ij4KICAgICAgPHN0b3Agc3R5bGU9InN0b3AtY29sb3I6IGNvbG9yKGRpc3BsYXktcDMgMC41MyAwLjcgMC43NSk7IiBvZmZzZXQ9IjAiLz4KICAgICAgPHN0b3Agc3R5bGU9InN0b3AtY29sb3I6IGNvbG9yKGRpc3BsYXktcDMgMC42NDMwOSwgMC42OTIxNSwgMC41NjYxNCk7IiBvZmZzZXQ9IjAuMzEzIi8+CiAgICAgIDxzdG9wIHN0eWxlPSJzdG9wLWNvbG9yOiBjb2xvcihkaXNwbGF5LXAzIDAuNjEyOTksIDAuNTYzMDEsIDAuMzM0Nyk7IiBvZmZzZXQ9IjAuNTE5Ii8+CiAgICAgIDxzdG9wIHN0eWxlPSJzdG9wLWNvbG9yOiBjb2xvcihkaXNwbGF5LXAzIDAuNzYgMC41NyAwLjI2KTsiIG9mZnNldD0iMC43MTkiLz4KICAgICAgPHN0b3Agc3R5bGU9InN0b3AtY29sb3I6IGNvbG9yKGRpc3BsYXktcDMgMC41MiAwLjE1IDAuMDcpOyIgb2Zmc2V0PSIxIi8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogIDwvZGVmcz4KICA8ZWxsaXBzZSBwYWludC1vcmRlcj0iZmlsbCIgZmlsbC1ydWxlPSJldmVub2RkIiBmaWxsPSJ1cmwoJyNkZXNlcnQtYmx1ZScpIiBjeD0iMjUwIiBjeT0iMjUwIiByeD0iMjUwIiByeT0iMjUwLjAwMSIgdHJhbnNmb3JtPSJtYXRyaXgoMSwgMCwgMCwgMSwgMCwgMCkiLz4KPC9zdmc+",
-          "markdownDescription": "Used for auto filling `@icon` in the code snippet `UserScript`."
-        },
-        "monkey-wrench.activation-condition.fileExtensions": {
-          "type": "array",
-          "markdownDescription": "Enable extension features only in files with specific extensions. The default is `.user.js`. An empty array will enable the extension in all files.",
-          "default": [
-            ".user.js"
-          ],
-          "items": {
-            "type": "string",
-            "pattern": "^\\..+$"
-          }
-        },
-        "monkey-wrench.activation-condition.userscriptHeader": {
-          "type": "boolean",
-          "markdownDescription": "Enable extension features only in files with a userscript header.\n\n```js\n// ==UserScript==\n// @name         Script name\n// etc..\n// ==/UserScript==\n```",
-          "default": false
-        },
-        "monkey-wrench.enable-ts-config-update": {
-          "type": "boolean",
-          "default": false,
-          "markdownDescription": "Update / create `tsconfig.json` in the current workspace for userscript compatibility."
-        },
-        "monkey-wrench.enable-js-config-update": {
-          "type": "boolean",
-          "default": false,
-          "markdownDescription": "Update / create `jsconfig.json` in the current workspace for userscript compatibility."
-        },
-        "monkey-wrench.enable-eslint-config-update": {
-          "type": "boolean",
-          "default": false,
-          "markdownDescription": "Update / create `.eslintrc.json` in the current workspace for userscript compatibility."
-        }
-      }
+    "galleryBanner": {
+        "color": "#8a5cf5",
+        "theme": "dark"
     },
-    "languages": [
-      {
-        "id": "javascript",
-        "aliases": [
-          "JavaScript",
-          "js"
-        ],
-        "extensions": [".user.js"],
-        "filenames": []
-      }
+    "keywords": [
+        "userscript",
+        "Tampermonkey",
+        "Greasemonkey",
+        "user.js",
+        "chrome"
     ],
-    "grammars": [
-      {
-        "injectTo": ["source.js"],
-        "scopeName": "source.js.user",
-        "path": "./syntaxes/userscript.tmLanguage.json",
-        "embeddedLanguages": {"source.css": "css", "source.js": "javascript"}
-      }
+    "homepage": "https://github.com/song-dog/vscode-monkey-wrench/README.md",
+    "type": "commonjs",
+    "publisher": "coyote-studios",
+    "author": {
+        "name": "coyote",
+        "email": "coyote@coyotestudios.xyz",
+        "url": "https://coyotestudios.xyz"
+    },
+    "activationEvents": [
+        "onLanguage:javascript",
+        "workspaceContains:**/.user.js"
     ],
-    "menus": {
-      "editor/context": [
+    "types": "@types/index.d.ts",
+    "main": "./dist/extension.js",
+    "badges": [
         {
-          "when": "resourceFilename =~ /\\.user\\.js$/",
-          "command": "monkey-wrench.update-configs",
-          "group": "navigation"
+            "url": "https://vsmarketplacebadges.dev/version-short/coyote-studios.monkey-wrench.svg",
+            "href": "https://marketplace.visualstudio.com/items?itemName=coyote-studios.monkey-wrench",
+            "description": "Visual Studio Marketplace Version"
+        },
+        {
+            "url": "https://vsmarketplacebadges.dev/installs-short/coyote-studios.monkey-wrench.svg",
+            "href": "https://marketplace.visualstudio.com/items?itemName=coyote-studios.monkey-wrench",
+            "description": "Visual Studio Marketplace Installs"
+        },
+        {
+            "url": "https://vsmarketplacebadges.dev/rating-short/coyote-studios.monkey-wrench.svg",
+            "href": "https://marketplace.visualstudio.com/items?itemName=coyote-studios.monkey-wrench",
+            "description": "Visual Studio Marketplace Rating"
         }
-      ]
+    ],
+    "contributes": {
+        "commands": [
+            {
+                "command": "monkey-wrench.update-configs",
+                "title": "Update Configs",
+                "category": "Monkey Wrench",
+                "icon": {
+                    "light": "images/icon-light.svg",
+                    "dark": "images/icon-dark.svg"
+                }
+            }
+        ],
+        "configuration": {
+            "title": "Monkey Wrench",
+            "properties": {
+                "monkey-wrench.metadata.namespace": {
+                    "type": "string",
+                    "default": "https://my-userscripts.com/",
+                    "markdownDescription": "Used for auto filling `@namespace` in the code snippet `UserScript`."
+                },
+                "monkey-wrench.metadata.author": {
+                    "type": "string",
+                    "default": "You",
+                    "markdownDescription": "Used for auto filling `@author` in the code snippet `UserScript`."
+                },
+                "monkey-wrench.metadata.icon": {
+                    "type": "string",
+                    "default": "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPCFET0NUWVBFIHN2Zz4KPHN2ZyB2aWV3Qm94PSIwIDAgNTAwIDUwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8ZGVmcz4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iZGVzZXJ0LWJsdWUiIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIiB4MT0iMjUwIiB5MT0iLTAuMDAxIiB4Mj0iMjUwIiB5Mj0iNTAwLjAwMSIgc3ByZWFkTWV0aG9kPSJyZWZsZWN0Ij4KICAgICAgPHN0b3Agc3R5bGU9InN0b3AtY29sb3I6IGNvbG9yKGRpc3BsYXktcDMgMC41MyAwLjcgMC43NSk7IiBvZmZzZXQ9IjAiLz4KICAgICAgPHN0b3Agc3R5bGU9InN0b3AtY29sb3I6IGNvbG9yKGRpc3BsYXktcDMgMC42NDMwOSwgMC42OTIxNSwgMC41NjYxNCk7IiBvZmZzZXQ9IjAuMzEzIi8+CiAgICAgIDxzdG9wIHN0eWxlPSJzdG9wLWNvbG9yOiBjb2xvcihkaXNwbGF5LXAzIDAuNjEyOTksIDAuNTYzMDEsIDAuMzM0Nyk7IiBvZmZzZXQ9IjAuNTE5Ii8+CiAgICAgIDxzdG9wIHN0eWxlPSJzdG9wLWNvbG9yOiBjb2xvcihkaXNwbGF5LXAzIDAuNzYgMC41NyAwLjI2KTsiIG9mZnNldD0iMC43MTkiLz4KICAgICAgPHN0b3Agc3R5bGU9InN0b3AtY29sb3I6IGNvbG9yKGRpc3BsYXktcDMgMC41MiAwLjE1IDAuMDcpOyIgb2Zmc2V0PSIxIi8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogIDwvZGVmcz4KICA8ZWxsaXBzZSBwYWludC1vcmRlcj0iZmlsbCIgZmlsbC1ydWxlPSJldmVub2RkIiBmaWxsPSJ1cmwoJyNkZXNlcnQtYmx1ZScpIiBjeD0iMjUwIiBjeT0iMjUwIiByeD0iMjUwIiByeT0iMjUwLjAwMSIgdHJhbnNmb3JtPSJtYXRyaXgoMSwgMCwgMCwgMSwgMCwgMCkiLz4KPC9zdmc+",
+                    "markdownDescription": "Used for auto filling `@icon` in the code snippet `UserScript`."
+                },
+                "monkey-wrench.activation-condition.fileExtensions": {
+                    "type": "array",
+                    "markdownDescription": "Enable extension features only in files with specific extensions. The default is `.user.js`. An empty array will enable the extension in all files.",
+                    "default": [
+                        ".user.js"
+                    ],
+                    "items": {
+                        "type": "string",
+                        "pattern": "^\\..+$"
+                    }
+                },
+                "monkey-wrench.activation-condition.userscriptHeader": {
+                    "type": "boolean",
+                    "markdownDescription": "Enable extension features only in files with a userscript header.\n\n```js\n// ==UserScript==\n// @name         Script name\n// etc..\n// ==/UserScript==\n```",
+                    "default": false
+                },
+                "monkey-wrench.enable-ts-config-update": {
+                    "type": "boolean",
+                    "default": false,
+                    "markdownDescription": "Update / create `tsconfig.json` in the current workspace for userscript compatibility."
+                },
+                "monkey-wrench.enable-js-config-update": {
+                    "type": "boolean",
+                    "default": false,
+                    "markdownDescription": "Update / create `jsconfig.json` in the current workspace for userscript compatibility."
+                },
+                "monkey-wrench.enable-eslint-config-update": {
+                    "type": "boolean",
+                    "default": false,
+                    "markdownDescription": "Update / create `.eslintrc.json` in the current workspace for userscript compatibility."
+                }
+            }
+        },
+        "languages": [
+            {
+                "id": "javascript",
+                "aliases": [
+                    "JavaScript",
+                    "js"
+                ],
+                "extensions": [".user.js"],
+                "filenames": []
+            }
+        ],
+        "grammars": [
+            {
+                "injectTo": ["source.js"],
+                "scopeName": "source.js.user",
+                "path": "./syntaxes/userscript.tmLanguage.json",
+                "embeddedLanguages": {
+                    "source.css": "css",
+                    "source.js": "javascript"
+                }
+            }
+        ],
+        "menus": {
+            "editor/context": [
+                {
+                    "when": "resourceFilename =~ /\\.user\\.js$/",
+                    "command": "monkey-wrench.update-configs",
+                    "group": "navigation"
+                }
+            ]
+        }
+    },
+    "scripts": {
+        "lint": "eslint src/ --ext .ts",
+        "pretest": "npm run lint",
+        "test": "vscode-test",
+        "vscode:prepublish": "npm run esbuild-base -- --minify",
+        "esbuild-base": "esbuild ./src/extension.mjs --bundle --outfile=dist/extension.js --external:vscode --format=cjs --platform=node",
+        "esbuild": "npm run esbuild-base",
+        "esbuild-watch": "npm run esbuild-base -- --sourcemap --watch",
+        "format": "prettier --write src/",
+        "test-compile": "tsc -p ./"
+    },
+    "devDependencies": {
+        "@types/mocha": "^10.0.6",
+        "@types/node": "^18.19.30",
+        "@types/vscode": "^1.88.0",
+        "@vscode/test-cli": "^0.0.8",
+        "@vscode/test-electron": "^2.3.9",
+        "esbuild": "^0.20.2",
+        "eslint": "^8.57.0",
+        "typescript": "^5.4.4"
     }
-  },
-  "scripts": {
-    "lint": "eslint src/ --ext .ts",
-    "pretest": "npm run lint",
-    "test": "vscode-test",
-    "vscode:prepublish": "npm run esbuild-base -- --minify",
-    "esbuild-base": "esbuild ./src/extension.mjs --bundle --outfile=dist/extension.js --external:vscode --format=cjs --platform=node",
-    "esbuild": "npm run esbuild-base",
-    "esbuild-watch": "npm run esbuild-base -- --sourcemap --watch",
-    "format": "prettier --write src/",
-    "test-compile": "tsc -p ./"
-  },
-  "devDependencies": {
-    "@types/mocha": "^10.0.6",
-    "@types/node": "^18.19.30",
-    "@types/vscode": "^1.88.0",
-    "@vscode/test-cli": "^0.0.8",
-    "@vscode/test-electron": "^2.3.9",
-    "esbuild": "^0.20.2",
-    "eslint": "^8.57.0",
-    "typescript": "^5.4.4"
-  }
 }
