@@ -7,7 +7,7 @@
         "url": "https://github.com/song-dog/vscode-monkey-wrench.git"
     },
     "icon": "images/icon.webp",
-    "version": "0.0.54",
+    "version": "0.0.6",
     "license": "SEE LICENSE IN LICENSE",
     "engines": {
         "vscode": "^1.88.0"

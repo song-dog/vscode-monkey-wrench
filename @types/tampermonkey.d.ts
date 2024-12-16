@@ -390,13 +390,16 @@ type GM_cookie = {
   delete(details: GM_cookie.DeleteDetails, callback: (error?: string) => void): void;
 };
 
+interface UrlChangeEvent {
+  readonly url: string;
+}
+
 declare global {
-  interface Window {
-    onurlchange: (this: Window, ev: CustomEvent) => any;
+  interface WindowEventMap {
+    urlchange: UrlChangeEvent;
   }
 
-  interface EventTarget {
-    addEventListener(type: 'urlchange', listener: (this: Window, ev: CustomEvent) => any, options?: boolean | AddEventListenerOptions): void;
-    removeEventListener(type: 'urlchange', listener: (this: Window, ev: CustomEvent) => any, options?: boolean | EventListenerOptions): void;
+  interface Window {
+    onurlchange: (this: Window, ev: UrlChangeEvent) => any;
   }
 }
