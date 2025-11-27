@@ -390,6 +390,33 @@ type GM_cookie = {
   delete(details: GM_cookie.DeleteDetails, callback: (error?: string) => void): void;
 };
 
+declare namespace GM_audio {
+  type MuteDetails = {
+    isMuted: boolean;
+  };
+  type StateInfo = {
+    isMuted?: boolean;
+    muteReason?: "user" | "capture" | "extension";
+    isAudible?: boolean;
+  };
+  type StateChangeInfo = {
+    muted?: "user" | "capture" | "extension" | false;
+    audible?: boolean;
+  };
+  type StateChangeListener = (info: StateInfo) => void;
+}
+
+type GM_audio = {
+  setMute(details: GM_audio.MuteDetails, callback?: (error?: string) => void): void;
+  setMute(details: GM_audio.MuteDetails): Promise<void>;
+  getState(callback: (state: GM_audio.StateInfo) => void): void;
+  getState(): Promise<GM_audio.StateInfo>;
+  addStateChangeListener(listener: GM_audio.StateChangeListener, callback?: (error?: string) => void): void;
+  addStateChangeListener(listener: GM_audio.StateChangeListener): Promise<void>;
+  removeStateChangeListener(listener: GM_audio.StateChangeListener, callback?: () => void): void;
+  removeStateChangeListener(listener: GM_audio.StateChangeListener): Promise<void>;
+};
+
 interface UrlChangeEvent {
   readonly url: string;
 }

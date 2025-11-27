@@ -7,7 +7,7 @@
         "url": "https://github.com/song-dog/vscode-monkey-wrench.git"
     },
     "icon": "images/icon.webp",
-    "version": "0.0.6",
+    "version": "0.0.8",
     "license": "SEE LICENSE IN LICENSE",
     "engines": {
         "vscode": "^1.88.0"
@@ -129,16 +129,84 @@
                 ],
                 "extensions": [".user.js"],
                 "filenames": []
+            },
+            {
+                "id": "glsl",
+                "aliases": [
+                    "GLSL",
+                    "glsl"
+                ],
+                "extensions": [
+                    ".glsl",
+                    ".vert",
+                    ".vs",
+                    ".frag",
+                    ".fs"
+                ],
+                "icon": {
+                    "dark": "./images/file-icon.svg",
+                    "light": "./images/file-icon.svg"
+                },
+                "configuration": "./syntaxes/glsl-language-configuration.json"
+            },
+            {
+                "id": "wgsl",
+                "aliases": [
+                    "WGSL",
+                    "wgsl"
+                ],
+                "extensions": [
+                    ".wgsl"
+                ],
+                "configuration": "./syntaxes/wgsl-language-configuration.json"
             }
         ],
         "grammars": [
             {
-                "injectTo": ["source.js"],
+                "language": "glsl",
+                "scopeName": "source.glsl",
+                "path": "./syntaxes/glsl.tmLanguage.json"
+            },
+            {
+                "language": "wgsl",
+                "path": "./syntaxes/wgsl.tmLanguage.json",
+                "scopeName": "source.wgsl"
+            },
+            {
+                "injectTo": [
+                    "source.js",
+                    "text.html.basic"
+                ],
                 "scopeName": "source.js.user",
                 "path": "./syntaxes/userscript.tmLanguage.json",
                 "embeddedLanguages": {
+                    "meta.embedded.block.html": "html",
+                    "meta.embedded.block.css": "css",
                     "source.css": "css",
-                    "source.js": "javascript"
+                    "source.glsl": "glsl"
+                }
+            },
+            {
+                "injectTo": [
+                    "source.js",
+                    "text.html.basic"
+                ],
+                "scopeName": "source.js.user.string.injection",
+                "path": "./syntaxes/string-injection.json",
+                "embeddedLanguages": {
+                    "meta.template.expression.ts": "typescript"
+                }
+            },
+            {
+                "injectTo": [
+                    "source.js",
+                    "source.css",
+                    "text.html.basic"
+                ],
+                "scopeName": "source.js.user.style.injection",
+                "path": "./syntaxes/style-injection.json",
+                "embeddedLanguages": {
+                    "meta.template.expression.ts": "typescript"
                 }
             }
         ],

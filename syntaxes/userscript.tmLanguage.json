@@ -1,409 +1,976 @@
 {
-  "$schema": "./tmlanguage.json",
-  "name": "UserScript",
-  "scopeName": "source.js.user",
-  "injectionSelector": "L:source.js -comment -(string -meta.embedded), L:source.ts -comment -(string -meta.embedded)",
-  "fileTypes": [
-    "user.js"
-  ],
-  "repository": {
-    "regex": {
-      "patterns": [
-        {
-          "name": "string.regexp.js",
-          "begin": "(?<!\\+\\+|--|})(?<=[=(:,\\[?+!]|^return|[^\\._$[:alnum:]]return|^case|[^\\._$[:alnum:]]case|=>|&&|\\|\\||\\*\\/)\\s*(\\/)(?![\\/*])(?=(?:[^\\/\\\\\\[\\()]|\\\\.|\\[([^\\]\\\\]|\\\\.)+\\]|\\(([^\\)\\\\]|\\\\.)+\\))+\\/([dgimsuy]+|(?![\\/\\*])|(?=\\/\\*))(?!\\s*[a-zA-Z0-9_$]))",
-          "beginCaptures": {
-            "1": {
-              "name": "punctuation.definition.string.begin.js"
-            }
-          },
-          "end": "(/)([dgimsuy]*)",
-          "endCaptures": {
-            "1": {
-              "name": "punctuation.definition.string.end.js"
-            },
-            "2": {
-              "name": "keyword.other.js"
-            }
-          },
-          "patterns": [
-            {
-              "include": "#regexp"
-            }
-          ]
+    "$schema": "./tmlanguage.json",
+    "name": "UserScript",
+    "scopeName": "source.js.user",
+    "injectionSelector": "L:source.js -comment -(string -meta.embedded)",
+    "fileTypes": [
+        "user.js"
+    ],
+    "repository": {
+        "string-character-escape": {
+            "name": "constant.character.escape.js",
+            "match": "\\\\(x[0-9A-Fa-f]{2}|u[0-9A-Fa-f]{4}|u\\{[0-9A-Fa-f]+\\}|[0-2][0-7]{0,2}|3[0-6][0-7]?|37[0-7]?|[4-7][0-7]?|.|$)"
         },
-        {
-          "name": "string.regexp.js",
-          "begin": "((?<![_$[:alnum:])\\]]|\\+\\+|--|}|\\*\\/)|((?<=^return|[^\\._$[:alnum:]]return|^case|[^\\._$[:alnum:]]case))\\s*)\\/(?![\\/*])(?=(?:[^\\/\\\\\\[]|\\\\.|\\[([^\\]\\\\]|\\\\.)*\\])+\\/([dgimsuy]+|(?![\\/\\*])|(?=\\/\\*))(?!\\s*[a-zA-Z0-9_$]))",
-          "beginCaptures": {
-            "0": {
-              "name": "punctuation.definition.string.begin.js"
-            }
-          },
-          "end": "(/)([dgimsuy]*)",
-          "endCaptures": {
-            "1": {
-              "name": "punctuation.definition.string.end.js"
+        "template-substitution-element": {
+            "name": "meta.template.expression.js",
+            "begin": "\\$\\{",
+            "beginCaptures": {
+                "0": {
+                    "name": "punctuation.definition.template-expression.begin.js"
+                }
             },
-            "2": {
-              "name": "keyword.other.js"
-            }
-          },
-          "patterns": [
-            {
-              "include": "#regexp"
-            }
-          ]
+            "end": "\\}",
+            "endCaptures": {
+                "0": {
+                    "name": "punctuation.definition.template-expression.end.js"
+                }
+            },
+            "patterns": [
+                {
+                    "include": "source.js#expression"
+                }
+            ],
+            "contentName": "meta.embedded.line.js"
+        },
+        "regex": {
+            "patterns": [
+                {
+                    "name": "string.regexp.js",
+                    "begin": "(?<!\\+\\+|--|})(?<=[=(:,\\[?+!]|^return|[^\\._$[:alnum:]]return|^case|[^\\._$[:alnum:]]case|=>|&&|\\|\\||\\*\\/)\\s*(\\/)(?![\\/*])(?=(?:[^\\/\\\\\\[\\()]|\\\\.|\\[([^\\]\\\\]|\\\\.)+\\]|\\(([^\\)\\\\]|\\\\.)+\\))+\\/([dgimsuvy]+|(?![\\/\\*])|(?=\\/\\*))(?!\\s*[a-zA-Z0-9_$]))",
+                    "beginCaptures": {
+                        "1": {
+                            "name": "punctuation.definition.string.begin.js"
+                        }
+                    },
+                    "end": "(/)([dgimsuvy]*)",
+                    "endCaptures": {
+                        "1": {
+                            "name": "punctuation.definition.string.end.js"
+                        },
+                        "2": {
+                            "name": "keyword.other.js"
+                        }
+                    },
+                    "patterns": [
+                        {
+                            "include": "#regexp"
+                        }
+                    ]
+                },
+                {
+                    "name": "string.regexp.js",
+                    "begin": "((?<![_$[:alnum:])\\]]|\\+\\+|--|}|\\*\\/)|((?<=^return|[^\\._$[:alnum:]]return|^case|[^\\._$[:alnum:]]case))\\s*)\\/(?![\\/*])(?=(?:[^\\/\\\\\\[]|\\\\.|\\[([^\\]\\\\]|\\\\.)*\\])+\\/([dgimsuvy]+|(?![\\/\\*])|(?=\\/\\*))(?!\\s*[a-zA-Z0-9_$]))",
+                    "beginCaptures": {
+                        "0": {
+                            "name": "punctuation.definition.string.begin.js"
+                        }
+                    },
+                    "end": "(/)([dgimsuvy]*)",
+                    "endCaptures": {
+                        "1": {
+                            "name": "punctuation.definition.string.end.js"
+                        },
+                        "2": {
+                            "name": "keyword.other.js"
+                        }
+                    },
+                    "patterns": [
+                        {
+                            "include": "#regexp"
+                        }
+                    ]
+                }
+            ]
+        },
+        "regexp": {
+            "patterns": [
+                {
+                    "name": "keyword.control.anchor.regexp",
+                    "match": "\\\\[bB]|\\^|\\$"
+                },
+                {
+                    "match": "\\\\[1-9]\\d*|\\\\k<([a-zA-Z_$][\\w$]*)>",
+                    "captures": {
+                        "0": {
+                            "name": "keyword.other.back-reference.regexp"
+                        },
+                        "1": {
+                            "name": "variable.other.regexp"
+                        }
+                    }
+                },
+                {
+                    "name": "keyword.operator.quantifier.regexp",
+                    "match": "[?+*]|\\{(\\d+,\\d+|\\d+,|,\\d+|\\d+)\\}\\??"
+                },
+                {
+                    "name": "keyword.operator.or.regexp",
+                    "match": "\\|"
+                },
+                {
+                    "name": "punctuation.definition.comment.regexp",
+                    "match": "(?<= )# .+$"
+                },
+                {
+                    "name": "meta.group.assertion.regexp",
+                    "begin": "(\\()((\\?=)|(\\?!)|(\\?<=)|(\\?<!))",
+                    "beginCaptures": {
+                        "1": {
+                            "name": "punctuation.definition.group.regexp"
+                        },
+                        "2": {
+                            "name": "punctuation.definition.group.assertion.regexp"
+                        },
+                        "3": {
+                            "name": "meta.assertion.look-ahead.regexp"
+                        },
+                        "4": {
+                            "name": "meta.assertion.negative-look-ahead.regexp"
+                        },
+                        "5": {
+                            "name": "meta.assertion.look-behind.regexp"
+                        },
+                        "6": {
+                            "name": "meta.assertion.negative-look-behind.regexp"
+                        }
+                    },
+                    "end": "(\\))",
+                    "endCaptures": {
+                        "1": {
+                            "name": "punctuation.definition.group.regexp"
+                        }
+                    },
+                    "patterns": [
+                        {
+                            "include": "#regexp"
+                        }
+                    ]
+                },
+                {
+                    "name": "meta.group.regexp",
+                    "begin": "\\((?:(\\?:)|(?:\\?<([a-zA-Z_$][\\w$]*)>))?",
+                    "beginCaptures": {
+                        "0": {
+                            "name": "punctuation.definition.group.regexp"
+                        },
+                        "1": {
+                            "name": "punctuation.definition.group.no-capture.regexp"
+                        },
+                        "2": {
+                            "name": "variable.other.regexp"
+                        }
+                    },
+                    "end": "\\)",
+                    "endCaptures": {
+                        "0": {
+                            "name": "punctuation.definition.group.regexp"
+                        }
+                    },
+                    "patterns": [
+                        {
+                            "include": "#regexp"
+                        }
+                    ]
+                },
+                {
+                    "name": "constant.other.character-class.set.regexp",
+                    "begin": "(\\[)(\\^)?",
+                    "beginCaptures": {
+                        "1": {
+                            "name": "punctuation.definition.character-class.regexp"
+                        },
+                        "2": {
+                            "name": "keyword.operator.negation.regexp"
+                        }
+                    },
+                    "end": "(\\])",
+                    "endCaptures": {
+                        "1": {
+                            "name": "punctuation.definition.character-class.regexp"
+                        }
+                    },
+                    "patterns": [
+                        {
+                            "name": "constant.other.character-class.range.regexp",
+                            "match": "(?:.|(\\\\(?:[0-7]{3}|x[0-9A-Fa-f]{2}|u[0-9A-Fa-f]{4}))|(\\\\c[A-Z])|(\\\\.))\\-(?:[^\\]\\\\]|(\\\\(?:[0-7]{3}|x[0-9A-Fa-f]{2}|u[0-9A-Fa-f]{4}))|(\\\\c[A-Z])|(\\\\.))",
+                            "captures": {
+                                "1": {
+                                    "name": "constant.character.numeric.regexp"
+                                },
+                                "2": {
+                                    "name": "constant.character.control.regexp"
+                                },
+                                "3": {
+                                    "name": "constant.character.escape.backslash.regexp"
+                                },
+                                "4": {
+                                    "name": "constant.character.numeric.regexp"
+                                },
+                                "5": {
+                                    "name": "constant.character.control.regexp"
+                                },
+                                "6": {
+                                    "name": "constant.character.escape.backslash.regexp"
+                                }
+                            }
+                        },
+                        {
+                            "include": "#regex-character-class"
+                        }
+                    ]
+                },
+                {
+                    "include": "#regex-character-class"
+                }
+            ]
+        },
+        "regex-character-class": {
+            "patterns": [
+                {
+                    "name": "constant.other.character-class.regexp",
+                    "match": "\\\\[wWsSdDtrnvf]|\\."
+                },
+                {
+                    "name": "constant.character.numeric.regexp",
+                    "match": "\\\\([0-7]{3}|x[0-9A-Fa-f]{2}|u[0-9A-Fa-f]{4})"
+                },
+                {
+                    "name": "constant.character.control.regexp",
+                    "match": "\\\\c[A-Z]"
+                },
+                {
+                    "name": "constant.character.escape.backslash.regexp",
+                    "match": "\\\\."
+                }
+            ]
+        },
+        "comment": {
+            "patterns": [
+                {
+                    "name": "comment.block.documentation.js",
+                    "begin": "/\\*\\*(?!/)",
+                    "beginCaptures": {
+                        "0": {
+                            "name": "punctuation.definition.comment.js"
+                        }
+                    },
+                    "end": "\\*/",
+                    "endCaptures": {
+                        "0": {
+                            "name": "punctuation.definition.comment.js"
+                        }
+                    },
+                    "patterns": [
+                        {
+                            "include": "#docblock"
+                        }
+                    ]
+                },
+                {
+                    "name": "comment.block.js",
+                    "begin": "(/\\*)(?:\\s*((@)internal)(?=\\s|(\\*/)))?",
+                    "beginCaptures": {
+                        "1": {
+                            "name": "punctuation.definition.comment.js"
+                        },
+                        "2": {
+                            "name": "storage.type.internaldeclaration.js"
+                        },
+                        "3": {
+                            "name": "punctuation.decorator.internaldeclaration.js"
+                        }
+                    },
+                    "end": "\\*/",
+                    "endCaptures": {
+                        "0": {
+                            "name": "punctuation.definition.comment.js"
+                        }
+                    }
+                },
+                {
+                    "begin": "(^[ \\t]+)?((//)(?:\\s*((@)internal)(?=\\s|$))?)",
+                    "beginCaptures": {
+                        "1": {
+                            "name": "punctuation.whitespace.comment.leading.js"
+                        },
+                        "2": {
+                            "name": "comment.line.double-slash.js"
+                        },
+                        "3": {
+                            "name": "punctuation.definition.comment.js"
+                        },
+                        "4": {
+                            "name": "storage.type.internaldeclaration.js"
+                        },
+                        "5": {
+                            "name": "punctuation.decorator.internaldeclaration.js"
+                        }
+                    },
+                    "end": "(?=$)",
+                    "contentName": "comment.line.double-slash.js"
+                }
+            ]
+        },
+        "docblock": {
+            "patterns": [
+                {
+                    "begin": "((@)import)\\s+(?={)",
+                    "beginCaptures": {
+                        "1": {
+                            "name": "storage.type.class.jsdoc"
+                        },
+                        "2": {
+                            "name": "punctuation.definition.block.tag.jsdoc"
+                        }
+                    },
+                    "end": "(?=@|\\*/)",
+                    "patterns": [
+                        {
+                            "include": "#jsdoctype"
+                        },
+                        {
+                            "match": "\\bfrom\\b",
+                            "captures": {
+                                "0": {
+                                    "name": "keyword.control.from.js"
+                                }
+                            }
+                        },
+                        {
+                            "match": "(\")[A-Za-z0-9._/\\-@]*(\")",
+                            "captures": {
+                                "0": {
+                                    "name": "string.quoted.double.js"
+                                },
+                                "1": {
+                                    "name": "punctuation.definition.string.begin.jsdoc"
+                                },
+                                "2": {
+                                    "name": "punctuation.definition.string.end.jsdoc"
+                                }
+                            }
+                        },
+                        {
+                            "match": "(')[A-Za-z0-9._/\\-@]*(')",
+                            "captures": {
+                                "0": {
+                                    "name": "string.quoted.single.js"
+                                },
+                                "1": {
+                                    "name": "punctuation.definition.string.begin.jsdoc"
+                                },
+                                "2": {
+                                    "name": "punctuation.definition.string.end.jsdoc"
+                                }
+                            }
+                        }
+                    ]
+                },
+                {
+                    "begin": "(?x)((@)template)\\s+(?=[A-Za-z_$\\[{])",
+                    "beginCaptures": {
+                        "1": {
+                            "name": "storage.type.class.jsdoc"
+                        },
+                        "2": {
+                            "name": "punctuation.definition.block.tag.jsdoc"
+                        }
+                    },
+                    "end": "(?=\\s|\\*/|[^{}\\[\\]A-Za-z_$])",
+                    "patterns": [
+                        {
+                            "include": "#jsdoctype"
+                        },
+                        {
+                            "name": "variable.other.jsdoc",
+                            "match": "([A-Za-z_$][\\w$.\\[\\]]*)\\s*(,)?\\s*",
+                            "captures": {
+                                "1": {
+                                    "name": "variable.other.jsdoc"
+                                },
+                                "2": {
+                                    "name": "punctuation.separator.comma.jsdoc"
+                                }
+                            }
+                        },
+                        {
+                            "name": "variable.other.jsdoc",
+                            "match": "(?x)\n(\\[)\\s*\n[\\w$]+\n(?:\n  (?:\\[\\])?                                        # Foo[ ].bar properties within an array\n  \\.                                                # Foo.Bar namespaced parameter\n  [\\w$]+\n)*\n(?:\n  \\s*\n  (=)                                                # [foo=bar] Default parameter value\n  \\s*\n  (\n    # The inner regexes are to stop the match early at */ and to not stop at escaped quotes\n    (?>\n      \"(?:(?:\\*(?!/))|(?:\\\\(?!\"))|[^*\\\\])*?\" |                      # [foo=\"bar\"] Double-quoted\n      '(?:(?:\\*(?!/))|(?:\\\\(?!'))|[^*\\\\])*?' |                      # [foo='bar'] Single-quoted\n      \\[ (?:(?:\\*(?!/))|[^*])*? \\] |                                # [foo=[1,2]] Array literal\n      (?:(?:\\*(?!/))|\\s(?!\\s*\\])|\\[.*?(?:\\]|(?=\\*/))|[^*\\s\\[\\]])*   # Everything else\n    )*\n  )\n)?\n\\s*(?:(\\])((?:[^*\\s]|\\*[^\\s/])+)?|(?=\\*/))",
+                            "captures": {
+                                "1": {
+                                    "name": "punctuation.definition.optional-value.begin.bracket.square.jsdoc"
+                                },
+                                "2": {
+                                    "name": "keyword.operator.assignment.jsdoc"
+                                },
+                                "3": {
+                                    "name": "source.embedded.js"
+                                },
+                                "4": {
+                                    "name": "punctuation.definition.optional-value.end.bracket.square.jsdoc"
+                                },
+                                "5": {
+                                    "name": "invalid.illegal.syntax.jsdoc"
+                                }
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        "jsdoctype": {
+            "patterns": [
+                {
+                    "contentName": "entity.name.type.instance.jsdoc",
+                    "begin": "\\G({)",
+                    "beginCaptures": {
+                        "0": {
+                            "name": "entity.name.type.instance.jsdoc"
+                        },
+                        "1": {
+                            "name": "punctuation.definition.bracket.curly.begin.jsdoc"
+                        }
+                    },
+                    "end": "((}))\\s*|(?=\\*/)",
+                    "endCaptures": {
+                        "1": {
+                            "name": "entity.name.type.instance.jsdoc"
+                        },
+                        "2": {
+                            "name": "punctuation.definition.bracket.curly.end.jsdoc"
+                        }
+                    },
+                    "patterns": [
+                        {
+                            "include": "#brackets"
+                        }
+                    ]
+                }
+            ]
+        },
+        "brackets": {
+            "patterns": [
+                {
+                    "begin": "{",
+                    "end": "}|(?=\\*/)",
+                    "patterns": [
+                        {
+                            "include": "#brackets"
+                        }
+                    ]
+                },
+                {
+                    "begin": "\\[",
+                    "end": "\\]|(?=\\*/)",
+                    "patterns": [
+                        {
+                            "include": "#brackets"
+                        }
+                    ]
+                }
+            ]
         }
-      ]
     },
-    "regexp": {
-      "patterns": [
+    "patterns": [
         {
-          "name": "keyword.control.anchor.regexp",
-          "match": "\\\\[bB]|\\^|\\$"
+            "include": "#comment"
         },
         {
-          "match": "\\\\[1-9]\\d*|\\\\k<([a-zA-Z_$][\\w$]*)>",
-          "captures": {
-            "0": {
-              "name": "keyword.other.back-reference.regexp"
+            "begin": "^//\\s*==UserScript==$",
+            "beginCaptures": {
+                "0": {
+                    "name": "comment.block.documentation.js"
+                }
             },
-            "1": {
-              "name": "variable.other.regexp"
-            }
-          }
+            "end": "^//\\s*==/UserScript==$",
+            "endCaptures": {
+                "0": {
+                    "name": "comment.block.documentation.js"
+                }
+            },
+            "patterns": [
+                {
+                    "match": "^// (@)(namespace|name|name:\\w{2}|copyright|version|description|description:\\w{2}|icon|iconURL|defaulticon|icon64|icon64URL|homepage|homepageURL|website|source|require|connect|updateURL|downloadURL|supportURL|webRequest)(?: +(.*))$",
+                    "captures": {
+                        "0": {
+                            "name": "comment.block.documentation.js"
+                        },
+                        "1": {
+                            "name": "storage.type.class.jsdoc"
+                        },
+                        "2": {
+                            "name": "storage.type.class.jsdoc"
+                        },
+                        "3": {
+                            "name": "comment.block.documentation.js"
+                        }
+                    }
+                },
+                {
+                    "match": "^// (@)(include|match|exclude)(?: +(.*))$",
+                    "captures": {
+                        "0": {
+                            "name": "comment.block.documentation.js"
+                        },
+                        "1": {
+                            "name": "storage.type.class.jsdoc"
+                        },
+                        "2": {
+                            "name": "storage.type.class.jsdoc"
+                        },
+                        "3": {
+                            "patterns": [
+                                {
+                                    "name": "string.regexp.js",
+                                    "match": "[a-zA-Z0-9-_:/]+"
+                                },
+                                {
+                                    "include": "#regexp"
+                                }
+                            ]
+                        }
+                    }
+                },
+                {
+                    "match": "^// (@)(namespace|name|name:\\w{2}|grant|author|run-at|sandbox)(?: +(.*))$",
+                    "captures": {
+                        "0": {
+                            "name": "comment.block.documentation.js"
+                        },
+                        "1": {
+                            "name": "storage.type.class.jsdoc"
+                        },
+                        "2": {
+                            "name": "storage.type.class.jsdoc"
+                        },
+                        "3": {
+                            "name": "entity.name.type.jsdoc"
+                        }
+                    }
+                },
+                {
+                    "match": "^// (@)(noframes|unwrap)$",
+                    "captures": {
+                        "0": {
+                            "name": "comment.block.documentation.js"
+                        },
+                        "1": {
+                            "name": "storage.type.class.jsdoc"
+                        },
+                        "2": {
+                            "name": "storage.type.class.jsdoc"
+                        }
+                    }
+                },
+                {
+                    "match": "^// (@)(antifeature|antifeature:\\w{2}|resource)(?: +([^\n ]*) +([^\n ]*))$",
+                    "captures": {
+                        "0": {
+                            "name": "comment.block.documentation.js"
+                        },
+                        "1": {
+                            "name": "storage.type.class.jsdoc"
+                        },
+                        "2": {
+                            "name": "storage.type.class.jsdoc"
+                        },
+                        "3": {
+                            "name": "entity.name.type.jsdoc"
+                        },
+                        "4": {
+                            "name": "comment.block.documentation.js"
+                        }
+                    }
+                },
+                {
+                    "match": "^//.*$",
+                    "captures": {
+                        "0": {
+                            "name": "comment.block.documentation.js"
+                        }
+                    }
+                }
+            ]
         },
         {
-          "name": "keyword.operator.quantifier.regexp",
-          "match": "[?+*]|\\{(\\d+,\\d+|\\d+,|,\\d+|\\d+)\\}\\??"
-        },
-        {
-          "name": "keyword.operator.or.regexp",
-          "match": "\\|"
-        },
-        {
-          "name": "meta.group.assertion.regexp",
-          "begin": "(\\()((\\?=)|(\\?!)|(\\?<=)|(\\?<!))",
-          "beginCaptures": {
-            "1": {
-              "name": "punctuation.definition.group.regexp"
-            },
-            "2": {
-              "name": "punctuation.definition.group.assertion.regexp"
-            },
-            "3": {
-              "name": "meta.assertion.look-ahead.regexp"
-            },
-            "4": {
-              "name": "meta.assertion.negative-look-ahead.regexp"
-            },
-            "5": {
-              "name": "meta.assertion.look-behind.regexp"
-            },
-            "6": {
-              "name": "meta.assertion.negative-look-behind.regexp"
-            }
-          },
-          "end": "(\\))",
-          "endCaptures": {
-            "1": {
-              "name": "punctuation.definition.group.regexp"
-            }
-          },
-          "patterns": [
-            {
-              "include": "#regexp"
-            }
-          ]
-        },
-        {
-          "name": "meta.group.regexp",
-          "begin": "\\((?:(\\?:)|(?:\\?<([a-zA-Z_$][\\w$]*)>))?",
-          "beginCaptures": {
-            "0": {
-              "name": "punctuation.definition.group.regexp"
-            },
-            "1": {
-              "name": "punctuation.definition.group.no-capture.regexp"
-            },
-            "2": {
-              "name": "variable.other.regexp"
-            }
-          },
-          "end": "\\)",
-          "endCaptures": {
-            "0": {
-              "name": "punctuation.definition.group.regexp"
-            }
-          },
-          "patterns": [
-            {
-              "include": "#regexp"
-            }
-          ]
-        },
-        {
-          "name": "constant.other.character-class.set.regexp",
-          "begin": "(\\[)(\\^)?",
-          "beginCaptures": {
-            "1": {
-              "name": "punctuation.definition.character-class.regexp"
-            },
-            "2": {
-              "name": "keyword.operator.negation.regexp"
-            }
-          },
-          "end": "(\\])",
-          "endCaptures": {
-            "1": {
-              "name": "punctuation.definition.character-class.regexp"
-            }
-          },
-          "patterns": [
-            {
-              "name": "constant.other.character-class.range.regexp",
-              "match": "(?:.|(\\\\(?:[0-7]{3}|x[0-9A-Fa-f]{2}|u[0-9A-Fa-f]{4}))|(\\\\c[A-Z])|(\\\\.))\\-(?:[^\\]\\\\]|(\\\\(?:[0-7]{3}|x[0-9A-Fa-f]{2}|u[0-9A-Fa-f]{4}))|(\\\\c[A-Z])|(\\\\.))",
-              "captures": {
+            "begin": "(?:(GM)(\\.))?((?:GM_)?addStyle)\\s*(\\()",
+            "beginCaptures": {
                 "1": {
-                  "name": "constant.character.numeric.regexp"
+                    "name": "variable.other.constant.object.js"
                 },
                 "2": {
-                  "name": "constant.character.control.regexp"
+                    "name": "punctuation.accessor.js"
                 },
                 "3": {
-                  "name": "constant.character.escape.backslash.regexp"
+                    "name": "entity.name.function.js"
                 },
                 "4": {
-                  "name": "constant.character.numeric.regexp"
+                    "name": "meta.brace.round.js"
+                }
+            },
+            "end": "\\)",
+            "endCaptures": {
+                "0": {
+                    "name": "meta.brace.round.js"
+                }
+            },
+            "patterns": [
+                {
+                    "begin": "`",
+                    "beginCaptures": {
+                        "0": {
+                            "name": "string.template.js punctuation.definition.string.template.begin.js"
+                        }
+                    },
+                    "end": "`",
+                    "endCaptures": {
+                        "0": {
+                            "name": "string.template.js punctuation.definition.string.template.end.js"
+                        }
+                    },
+                    "patterns": [
+                        {
+                            "include": "#template-substitution-element"
+                        },
+                        {
+                            "include": "#string-character-escape"
+                        },
+                        {
+                            "begin": "(?!\\G)",
+                            "end": "(?=`)",
+                            "name": "meta.embedded.block.css",
+                            "patterns": [
+                                {
+                                    "include": "source.css"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "begin": "\"",
+                    "beginCaptures": {
+                        "0": {
+                            "name": "string.quoted.double.js punctuation.definition.string.begin.js"
+                        }
+                    },
+                    "end": "\"",
+                    "endCaptures": {
+                        "0": {
+                            "name": "string.quoted.double.js punctuation.definition.string.end.js"
+                        }
+                    },
+                    "patterns": [
+                        {
+                            "begin": "(?!\\G)",
+                            "end": "(?=\")",
+                            "name": "meta.embedded.line.css",
+                            "patterns": [
+                                {
+                                    "include": "source.css"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "begin": "'",
+                    "beginCaptures": {
+                        "0": {
+                            "name": "string.quoted.single.js punctuation.definition.string.begin.js"
+                        }
+                    },
+                    "end": "'",
+                    "endCaptures": {
+                        "0": {
+                            "name": "string.quoted.single.js punctuation.definition.string.end.js"
+                        }
+                    },
+                    "patterns": [
+                        {
+                            "begin": "(?!\\G)",
+                            "end": "(?=')",
+                            "name": "meta.embedded.line.css",
+                            "patterns": [
+                                {
+                                    "include": "source.css"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "begin": "(?x)(?:\n  (?:\n    ([[:upper:]][_$[:digit:][:upper:]]*) |        # variable.other.constant.object.js\n    ([_$[:alpha:]][_$[:alnum:]]*)                 # variable.other.object.js\n  )\n  (?=\n    \\s*\\??\\.\\s*\n    \\#?[_$[:alpha:]][_$[:alnum:]]*\n  )\n  (?:\n    (?:\n      (\\.) |                                     # punctuation.accessor.js\n      (\\?\\.(?!\\s*[[:digit:]]))                 # punctuation.accessor.optional.js\n    )\\s*\n    (?:\n      (\\#?[[:upper:]][_$[:digit:][:upper:]]*) |  # variable.other.constant.object.property.js\n      (\\#?[_$[:alpha:]][_$[:alnum:]]*)           # variable.other.object.property.js\n    )\n    (?=\n      \\s*\\??\\.\\s*\n      \\#?[_$[:alpha:]][_$[:alnum:]]*\n    )\n  )*\n  (?:\n    (\\.) |                                       # punctuation.accessor.js\n    (\\?\\.(?!\\s*[[:digit:]]))                   # punctuation.accessor.optional.js\n  )\\s*\n)?\n(css)\n(`)",
+            "beginCaptures": {
+                "1": {
+                    "name": "variable.other.constant.object.js"
+                },
+                "2": {
+                    "name": "variable.other.object.js"
+                },
+                "3": {
+                    "name": "punctuation.accessor.js"
+                },
+                "4": {
+                    "name": "punctuation.accessor.optional.js"
                 },
                 "5": {
-                  "name": "constant.character.control.regexp"
+                    "name": "variable.other.constant.object.property.js"
                 },
                 "6": {
-                  "name": "constant.character.escape.backslash.regexp"
+                    "name": "variable.other.object.property.js"
+                },
+                "7": {
+                    "name": "punctuation.accessor.js"
+                },
+                "8": {
+                    "name": "punctuation.accessor.optional.js"
+                },
+                "9": {
+                    "name": "entity.name.function.tagged-template.js"
+                },
+                "10": {
+                    "name": "string.template.js punctuation.definition.string.template.begin.js"
                 }
-              }
             },
-            {
-              "include": "#regex-character-class"
-            }
-          ]
-        },
-        {
-          "include": "#regex-character-class"
-        }
-      ]
-    },
-    "regex-character-class": {
-      "patterns": [
-        {
-          "name": "constant.other.character-class.regexp",
-          "match": "\\\\[wWsSdDtrnvf]|\\."
-        },
-        {
-          "name": "constant.character.numeric.regexp",
-          "match": "\\\\([0-7]{3}|x[0-9A-Fa-f]{2}|u[0-9A-Fa-f]{4})"
-        },
-        {
-          "name": "constant.character.control.regexp",
-          "match": "\\\\c[A-Z]"
-        },
-        {
-          "name": "constant.character.escape.backslash.regexp",
-          "match": "\\\\."
-        }
-      ]
-    }
-  },
-  "patterns": [
-    {
-      "begin": "^//\\s*==UserScript==$",
-      "beginCaptures": {
-        "0": {
-          "name": "comment.block.documentation.js"
-        }
-      },
-      "end": "^//\\s*==/UserScript==$",
-      "endCaptures": {
-        "0": {
-          "name": "comment.block.documentation.js"
-        }
-      },
-      "patterns": [
-        {
-          "match": "^// (@)(namespace|name|name:\\w{2}|copyright|version|description|description:\\w{2}|icon|iconURL|defaulticon|icon64|icon64URL|homepage|homepageURL|website|source|require|connect|updateURL|downloadURL|supportURL|webRequest)(?:[ ]+(.*))$",
-          "captures": {
-            "0": {
-              "name": "comment.block.documentation.js"
+            "end": "`",
+            "endCaptures": {
+                "0": {
+                    "name": "string.template.js punctuation.definition.string.template.end.js"
+                }
             },
-            "1": {
-              "name": "storage.type.class.jsdoc"
-            },
-            "2": {
-              "name": "storage.type.class.jsdoc"
-            },
-            "3": {
-              "name": "comment.block.documentation.js"
-            }
-          }
-        },
-        {
-          "match": "^// (@)(include|match|exclude)(?:[ ]+(.*))$",
-          "captures": {
-            "0": {
-              "name": "comment.block.documentation.js"
-            },
-            "1": {
-              "name": "storage.type.class.jsdoc"
-            },
-            "2": {
-              "name": "storage.type.class.jsdoc"
-            },
-            "3": {
-              "patterns": [
+            "name": "source.css",
+            "patterns": [
                 {
-                  "name": "string.regexp.js",
-                  "match": "[a-zA-Z0-9-_:/]+"
+                    "include": "#template-substitution-element"
                 },
                 {
-                  "include": "#regexp"
+                    "include": "#string-character-escape"
+                },
+                {
+                    "include": "source.css"
                 }
-              ]
-            }
-          }
+            ]
         },
         {
-          "match": "^// (@)(namespace|name|name:\\w{2}|grant|author|run-at|sandbox)(?:[ ]+(.*))$",
-          "captures": {
-            "0": {
-              "name": "comment.block.documentation.js"
+            "begin": "(?x)(?:\n  (?:\n    ([[:upper:]][_$[:digit:][:upper:]]*) |        # variable.other.constant.object.js\n    ([_$[:alpha:]][_$[:alnum:]]*)                 # variable.other.object.js\n  )\n  (?=\n    \\s*\\??\\.\\s*\n    \\#?[_$[:alpha:]][_$[:alnum:]]*\n  )\n  (?:\n    (?:\n      (\\.) |                                     # punctuation.accessor.js\n      (\\?\\.(?!\\s*[[:digit:]]))                 # punctuation.accessor.optional.js\n    )\\s*\n    (?:\n      (\\#?[[:upper:]][_$[:digit:][:upper:]]*) |  # variable.other.constant.object.property.js\n      (\\#?[_$[:alpha:]][_$[:alnum:]]*)           # variable.other.object.property.js\n    )\n    (?=\n      \\s*\\??\\.\\s*\n      \\#?[_$[:alpha:]][_$[:alnum:]]*\n    )\n  )*\n  (?:\n    (\\.) |                                       # punctuation.accessor.js\n    (\\?\\.(?!\\s*[[:digit:]]))                   # punctuation.accessor.optional.js\n  )\\s*\n)?\n(glsl)\n(`)",
+            "beginCaptures": {
+                "1": {
+                    "name": "variable.other.constant.object.js"
+                },
+                "2": {
+                    "name": "variable.other.object.js"
+                },
+                "3": {
+                    "name": "punctuation.accessor.js"
+                },
+                "4": {
+                    "name": "punctuation.accessor.optional.js"
+                },
+                "5": {
+                    "name": "variable.other.constant.object.property.js"
+                },
+                "6": {
+                    "name": "variable.other.object.property.js"
+                },
+                "7": {
+                    "name": "punctuation.accessor.js"
+                },
+                "8": {
+                    "name": "punctuation.accessor.optional.js"
+                },
+                "9": {
+                    "name": "entity.name.function.tagged-template.js"
+                },
+                "10": {
+                    "name": "string.template.js punctuation.definition.string.template.begin.js"
+                }
             },
-            "1": {
-              "name": "storage.type.class.jsdoc"
+            "end": "`",
+            "endCaptures": {
+                "0": {
+                    "name": "string.template.js punctuation.definition.string.template.end.js"
+                }
             },
-            "2": {
-              "name": "storage.type.class.jsdoc"
-            },
-            "3": {
-              "name": "entity.name.type.jsdoc"
-            }
-          }
+            "name": "source.glsl",
+            "patterns": [
+                {
+                    "include": "#template-substitution-element"
+                },
+                {
+                    "include": "#string-character-escape"
+                },
+                {
+                    "include": "source.glsl"
+                }
+            ]
         },
         {
-          "match": "^// (@)(noframes|unwrap)$",
-          "captures": {
-            "0": {
-              "name": "comment.block.documentation.js"
+            "begin": "(?x)(?:\n  (?:\n    ([[:upper:]][_$[:digit:][:upper:]]*) |        # variable.other.constant.object.js\n    ([_$[:alpha:]][_$[:alnum:]]*)                 # variable.other.object.js\n  )\n  (?=\n    \\s*\\??\\.\\s*\n    \\#?[_$[:alpha:]][_$[:alnum:]]*\n  )\n  (?:\n    (?:\n      (\\.) |                                     # punctuation.accessor.js\n      (\\?\\.(?!\\s*[[:digit:]]))                 # punctuation.accessor.optional.js\n    )\\s*\n    (?:\n      (\\#?[[:upper:]][_$[:digit:][:upper:]]*) |  # variable.other.constant.object.property.js\n      (\\#?[_$[:alpha:]][_$[:alnum:]]*)           # variable.other.object.property.js\n    )\n    (?=\n      \\s*\\??\\.\\s*\n      \\#?[_$[:alpha:]][_$[:alnum:]]*\n    )\n  )*\n  (?:\n    (\\.) |                                       # punctuation.accessor.js\n    (\\?\\.(?!\\s*[[:digit:]]))                   # punctuation.accessor.optional.js\n  )\\s*\n)?\n(html)\n(`)",
+            "beginCaptures": {
+                "1": {
+                    "name": "variable.other.constant.object.js"
+                },
+                "2": {
+                    "name": "variable.other.object.js"
+                },
+                "3": {
+                    "name": "punctuation.accessor.js"
+                },
+                "4": {
+                    "name": "punctuation.accessor.optional.js"
+                },
+                "5": {
+                    "name": "variable.other.constant.object.property.js"
+                },
+                "6": {
+                    "name": "variable.other.object.property.js"
+                },
+                "7": {
+                    "name": "punctuation.accessor.js"
+                },
+                "8": {
+                    "name": "punctuation.accessor.optional.js"
+                },
+                "9": {
+                    "name": "entity.name.function.tagged-template.js"
+                },
+                "10": {
+                    "name": "string.template.js punctuation.definition.string.template.begin.js"
+                }
             },
-            "1": {
-              "name": "storage.type.class.jsdoc"
+            "end": "`",
+            "endCaptures": {
+                "0": {
+                    "name": "string.template.js punctuation.definition.string.template.end.js"
+                }
             },
-            "2": {
-              "name": "storage.type.class.jsdoc"
-            }
-          }
+            "contentName": "meta.embedded.block.html",
+            "patterns": [
+                {
+                    "include": "#template-substitution-element"
+                },
+                {
+                    "include": "#string-character-escape"
+                },
+                {
+                    "include": "text.html.basic"
+                }
+            ]
         },
         {
-          "match": "^// (@)(antifeature|antifeature:\\w{2}|resource)(?:[ ]+([^\n ]*)[ ]+([^\n ]*))$",
-          "captures": {
-            "0": {
-              "name": "comment.block.documentation.js"
+            "begin": "(?x)(?:\n  (?:\n    ([[:upper:]][_$[:digit:][:upper:]]*) |        # variable.other.constant.object.js\n    ([_$[:alpha:]][_$[:alnum:]]*)                 # variable.other.object.js\n  )\n  (?=\n    \\s*\\??\\.\\s*\n    \\#?[_$[:alpha:]][_$[:alnum:]]*\n  )\n  (?:\n    (?:\n      (\\.) |                                     # punctuation.accessor.js\n      (\\?\\.(?!\\s*[[:digit:]]))                 # punctuation.accessor.optional.js\n    )\\s*\n    (?:\n      (\\#?[[:upper:]][_$[:digit:][:upper:]]*) |  # variable.other.constant.object.property.js\n      (\\#?[_$[:alpha:]][_$[:alnum:]]*)           # variable.other.object.property.js\n    )\n    (?=\n      \\s*\\??\\.\\s*\n      \\#?[_$[:alpha:]][_$[:alnum:]]*\n    )\n  )*\n  (?:\n    (\\.) |                                       # punctuation.accessor.js\n    (\\?\\.(?!\\s*[[:digit:]]))                   # punctuation.accessor.optional.js\n  )\\s*\n)?\n(wgsl)\n(`)",
+            "beginCaptures": {
+                "1": {
+                    "name": "variable.other.constant.object.js"
+                },
+                "2": {
+                    "name": "variable.other.object.js"
+                },
+                "3": {
+                    "name": "punctuation.accessor.js"
+                },
+                "4": {
+                    "name": "punctuation.accessor.optional.js"
+                },
+                "5": {
+                    "name": "variable.other.constant.object.property.js"
+                },
+                "6": {
+                    "name": "variable.other.object.property.js"
+                },
+                "7": {
+                    "name": "punctuation.accessor.js"
+                },
+                "8": {
+                    "name": "punctuation.accessor.optional.js"
+                },
+                "9": {
+                    "name": "entity.name.function.tagged-template.js"
+                },
+                "10": {
+                    "name": "string.template.js punctuation.definition.string.template.begin.js"
+                }
             },
-            "1": {
-              "name": "storage.type.class.jsdoc"
+            "end": "`",
+            "endCaptures": {
+                "0": {
+                    "name": "string.template.js punctuation.definition.string.template.end.js"
+                }
             },
-            "2": {
-              "name": "storage.type.class.jsdoc"
-            },
-            "3": {
-              "name": "entity.name.type.jsdoc"
-            },
-            "4": {
-              "name": "comment.block.documentation.js"
-            }
-          }
+            "name": "source.wgsl",
+            "patterns": [
+                {
+                    "include": "source.js#template-substitution-element"
+                },
+                {
+                    "include": "source.js#string-character-escape"
+                },
+                {
+                    "include": "source.wgsl"
+                }
+            ]
         },
         {
-          "match": "^//.*$",
-          "captures": {
-            "0": {
-              "name": "comment.block.documentation.js"
-            }
-          }
-        }
-      ]
-    },
-    {
-      "begin": "(?:(GM[_\\.]addStyle)\\s*(\\())",
-      "end": "(?:(\\)))",
-      "beginCaptures": {
-        "1": {
-          "name": "entity.name.function.js"
-        },
-        "2": {
-          "name": "meta.brace.round.js"
-        }
-      },
-      "endCaptures": {
-        "1": {
-          "name": "meta.brace.round.js"
-        }
-      },
-      "patterns": [
-        {
-          "begin": "(\"|'|`)",
-          "beginCaptures": {
-            "0": {
-              "name": "string.template.js"
+            "begin": "(?x)(?:\n  (?:\n    ([[:upper:]][_$[:digit:][:upper:]]*) |        # variable.other.constant.object.js\n    ([_$[:alpha:]][_$[:alnum:]]*)                 # variable.other.object.js\n  )\n  (?=\n    \\s*\\??\\.\\s*\n    \\#?[_$[:alpha:]][_$[:alnum:]]*\n  )\n  (?:\n    (?:\n      (\\.) |                                     # punctuation.accessor.js\n      (\\?\\.(?!\\s*[[:digit:]]))                 # punctuation.accessor.optional.js\n    )\\s*\n    (?:\n      (\\#?[[:upper:]][_$[:digit:][:upper:]]*) |  # variable.other.constant.object.property.js\n      (\\#?[_$[:alpha:]][_$[:alnum:]]*)           # variable.other.object.property.js\n    )\n    (?=\n      \\s*\\??\\.\\s*\n      \\#?[_$[:alpha:]][_$[:alnum:]]*\n    )\n  )*\n  (?:\n    (\\.) |                                       # punctuation.accessor.js\n    (\\?\\.(?!\\s*[[:digit:]]))                   # punctuation.accessor.optional.js\n  )\\s*\n)?\n(regex)\n(`)",
+            "beginCaptures": {
+                "1": {
+                    "name": "variable.other.constant.object.js"
+                },
+                "2": {
+                    "name": "variable.other.object.js"
+                },
+                "3": {
+                    "name": "punctuation.accessor.js"
+                },
+                "4": {
+                    "name": "punctuation.accessor.optional.js"
+                },
+                "5": {
+                    "name": "variable.other.constant.object.property.js"
+                },
+                "6": {
+                    "name": "variable.other.object.property.js"
+                },
+                "7": {
+                    "name": "punctuation.accessor.js"
+                },
+                "8": {
+                    "name": "punctuation.accessor.optional.js"
+                },
+                "9": {
+                    "name": "entity.name.function.tagged-template.js"
+                },
+                "10": {
+                    "name": "string.template.js punctuation.definition.string.template.begin.js"
+                }
             },
-            "1": {
-              "name": "punctuation.definition.string.begin.js"
-            }
-          },
-          "contentName": "source.css",
-          "end": "((\\1))",
-          "endCaptures": {
-            "0": {
-              "name": "string.template.js"
+            "end": "`",
+            "endCaptures": {
+                "0": {
+                    "name": "string.template.js punctuation.definition.string.template.end.js"
+                }
             },
-            "1": {
-              "name": "punctuation.definition.string.end.js"
-            }
-          },
-          "patterns": [
-            {
-              "include": "source.css"
-            }
-          ]
-        },
-        {
-          "include": "source.js"
+            "name": "string.regexp.js",
+            "patterns": [
+                {
+                    "include": "#template-substitution-element"
+                },
+                {
+                    "include": "#string-character-escape"
+                },
+                {
+                    "include": "#regex"
+                },
+                {
+                    "include": "#regexp"
+                },
+                {
+                    "include": "#regex-character-class"
+                }
+            ]
         }
-      ]
-    },
-    {
-      "begin": "(css)(`)",
-      "beginCaptures": {
-        "1": {
-          "name": "entity.name.function.tagged-template.js"
-        },
-        "2": {
-          "name": "punctuation.definition.string.template.begin.js"
-        }
-      },
-      "contentName": "source.css",
-      "end": "((`))",
-      "endCaptures": {
-        "1": {
-          "name": "punctuation.definition.string.template.end.js"
-        }
-      },
-      "patterns": [
-        {
-          "include": "source.css"
-        }
-      ]
-    }
-  ]
+    ]
 }
